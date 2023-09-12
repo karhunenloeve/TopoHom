@@ -8,5 +8,5 @@ This paper examines the fundamental ideas of simplicial structures that lead to 
 4. Chain Complexes
 5. Exact Sequences
 6. Relative Homology Groups
-7. The Equivalence of $$H_k^\Delta$$ and $$H_k$$
+7. The Equivalence of $H_k^\Delta$ and $H_k$
 
