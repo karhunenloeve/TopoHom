@@ -22,4 +22,4 @@ sity. URL: (http://web.cse.ohio-state.edu/~wang.1016/courses/788/Lecs/lec6-marc.
 5. Nadathur, P. (2007). An Introduction to Homology. University
 of Chicago. URL: (https://www.math.uchicago.edu/~may/VIGRE/VIGRE2007/REUPapers/FINALFULL/Nadathur.pdf)[https://www.math.uchicago.edu/~may/VIGRE/VIGRE2007/REUPapers/FINALFULL/Nadathur.pdf].
 
-## [:arrow_down: Download](https://karhunenloeve.github.io/TopoHom/main.pdf)
+### [:arrow_down: Download](https://karhunenloeve.github.io/TopoHom/main.pdf)
