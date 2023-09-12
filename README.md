@@ -10,3 +10,4 @@ This paper examines the fundamental ideas of simplicial structures that lead to 
 6. Relative Homology Groups
 7. The Equivalence of $H_k^\Delta$ and $H_k$
 
+### [:arrow_down: Download the paper.](https://karhunenloeve.github.io/TopoHom/main.pdf)
