@@ -18,8 +18,7 @@ troduction. American Mathematical Society.
 3. Jonsson, J. (2011). Introduction to Simplicial Homology. Königliche
 Technische Hochschule. URL: https://people.kth.se/~jakobj/doc/homology/homology.pdf.
 4. Khoury, M. (2022). Lecture 6: Introduction to Simplicial Homology. Top-
-ics in Computational Topology: An Algorithmic View. Ohio State Univer-
-sity. URL: http://web.cse.ohio-state.edu/~wang.1016/courses/788/Lecs/lec6-marc.pdf.
+ics in Computational Topology: An Algorithmic View. Ohio State University. URL: http://web.cse.ohio-state.edu/~wang.1016/courses/788/Lecs/lec6-marc.pdf.
 5. Nadathur, P. (2007). An Introduction to Homology. University
 of Chicago. URL: https://www.math.uchicago.edu/~may/VIGRE/VIGRE2007/REUPapers/FINALFULL/Nadathur.pdf.
 
