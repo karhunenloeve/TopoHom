@@ -4,8 +4,9 @@
 \usepackage{amsthm,amssymb,amsmath}
 \usepackage{titlesec}
 \usepackage{url}
-
+\usepackage[backend=biber]{biblatex}
 \newtheorem*{theorem}{Theorem}
+\newtheorem*{definition}{Definition}
 
 \newcommand{\NN}{\mathbb{N}}
 \newcommand{\ZZ}{\mathbb{Z}}
@@ -27,6 +28,39 @@ This paper examines the fundamental ideas of simplicial structures that lead to 
 \tableofcontents
 
 \section{Simplicial Complexes}
+We remark, that a set of points $X = \{x_0, x_1, \ldots, x_d\}$ in $\mathbb{R}^n$ is said to be \emph{affinely independent} if the points are not contained in any affine subspace of dimension less than $d$.
+
+\begin{definition}
+Given a set $X = \{x_0, x_1, \ldots, x_d\} \subset \mathbb{R}^n$ of $d+1$ \textbf{affinely independent} points, the $d$-dimensional simplex $\sigma$, or \textbf{\emph{$d$-simplex}}, spanned by $X$ is the set of convex combinations
+\begin{equation}
+	\sigma := \left\{\sum_{i=0}^{d} \lambda_i x_i \; \vert \; \sum_{i=0}^{d} \lambda_i = 1, \; \lambda_i \geq 0 \right\}.
+\end{equation}
+\end{definition}
+
+By convention the empty set $\emptyset$ is added to the faces as the simplex spanned by the empty subset of the vertices. A $0$-simplex corresponds to a single point, a $1$-simplex corresponds to a line segment connecting two points, a $2$-simplex corresponds to a triangle, and a $3$-simplex corresponds to a tetrahedron. It is worth noting that the $d$-simplex is homeomorphic to the $d$-disk $D^d$. 
+
+Additionally, $\sigma$ represents the convex hull of the points $X$, which is the smallest convex subset of $\mathbb{R}^n$ that contains $x_0, x_1, \ldots, x_d$. The \emph{faces} of the simplex $\sigma$ with vertex set $X$ are the simplices formed by subsets of $X$. An \emph{$d$-face} of a simplex is a subset of the vertices of the simplex with a cardinality of $d+1$. The faces of an $d$-simplex with a dimension less than $d$ are referred to as its \emph{proper faces}. Two simplices are considered to be \emph{properly situated} if their intersection is either empty or a face of both simplices. By identifying simplices along entire faces, we obtain the resulting \emph{simplicial complexes}.
+
+\begin{definition}
+A \textbf{simplicial complex} $K$ is a finite set of simplices such that
+\begin{enumerate}
+	\item For all simplices $\sigma \subseteq K$ with $\alpha$ being a face of $\sigma$, it holds that $\alpha \subset K$.
+	\item $\sigma, \tau \subseteq K \implies \sigma, \tau$ are properly situated.
+\end{enumerate}
+\end{definition}
+
+The \emph{dimension} of $K$ is the highest dimension of its simplices. For a simplicial complex $K$ in $\mathbb{R}^n$, its \emph{underlying space} $\vert K \vert \subset \mathbb{R}^n$ is the union of the simplices of $K$. The topology of $K$ is the topology induced on $\vert K \vert$ by the standard topology in $\mathbb{R}^n$. Notice that when its vertex set is known, a simplicial complex in $\mathbb{R}^n$ is fully characterized by the list of its simplices. Thus, we can describe it in pure combinatorial terms by \emph{abstract simplicial complexes}:
+
+\begin{definition}
+Let $V = \{v_1, \ldots, v_n\}$ be a finite set. An \textbf{abstract simplicial complex $\tilde{K}$} with vertex set $V$ is a set of finite subsets of $V$ satisfying the two conditions:
+\begin{enumerate}
+	\item The elements of $V$ belong to $\tilde{K}$.
+	\item If $\sigma \subset \tilde{K}$ and $\tau \subseteq \sigma$, then $\tau \subset \tilde{K}$.
+\end{enumerate}
+\end{definition}
+
+The abstract simplicial complex $\tilde{K}$ of a simplicial complex $K$ is also called its \emph{vertex scheme}.
+
 \section{Homology Groups}
 \section{Singular Homology}
 \section{Chain Complexes}
@@ -34,13 +68,13 @@ This paper examines the fundamental ideas of simplicial structures that lead to 
 \section{Relative Homology Groups}
 \section{The Equivalence of $H_k^\Delta$ and $H_k$}
 
-\bibliographystyle{apa}
 \begin{thebibliography}{100}
-\bibitem{1} Edelsbrunner, H., Harer, J. L. (2022). Computational Topology: An Introduction. American Mathematical Society.
-\bibitem{2} Hatcher, A. (2005). Algebraic Topology. Cambridge University Press.
-\bibitem{3} Jonsson, J. (2011). Introduction to Simplicial Homology. Königliche Technische Hochschule. URL: \url{https://people.kth.se/~jakobj/doc/homology/homology.pdf}.
-\bibitem{4} Khoury, M. (2022). Lecture 6: Introduction to Simplicial Homology. Topics in Computational Topology: An Algorithmic View. Ohio State University. URL: \url{http://web.cse.ohio-state.edu/~wang.1016/courses/788/Lecs/lec6-marc.pdf}.
-\bibitem{5} Nadathur, P. (2007). An Introduction to Homology. University of Chicago. URL: \url{https://www.math.uchicago.edu/~may/VIGRE/VIGRE2007/REUPapers/FINALFULL/Nadathur.pdf}.
-
+\bibitem{1} Boissonnat, J. D., Chazal, F., Yvinec, M. (2018). Geometric and topological inference (Vol. 57). Cambridge University Press.
+\bibitem{2} Edelsbrunner, H., Harer, J. L. (2022). Computational Topology: An Introduction. American Mathematical Society.
+\bibitem{3} Hatcher, A. (2005). Algebraic Topology. Cambridge University Press.
+\bibitem{4} Jonsson, J. (2011). Introduction to Simplicial Homology. Königliche Technische Hochschule. URL: \url{https://people.kth.se/~jakobj/doc/homology/homology.pdf}.
+\bibitem{5} Khoury, M. (2022). Lecture 6: Introduction to Simplicial Homology. Topics in Computational Topology: An Algorithmic View. Ohio State University. URL: \url{http://web.cse.ohio-state.edu/~wang.1016/courses/788/Lecs/lec6-marc.pdf}.
+\bibitem{6} Nadathur, P. (2007). An Introduction to Homology. University of Chicago. URL: \url{https://www.math.uchicago.edu/~may/VIGRE/VIGRE2007/REUPapers/FINALFULL/Nadathur.pdf}.
+\bibitem{7} Melodia, L., Lenz, R. (2021). Estimate of the neural network dimension using algebraic topology and lie theory. In Pattern Recognition. ICPR International Workshops and Challenges: Virtual Event, January 10–15, 2021, Proceedings, Part V (pp. 15-29). Springer International Publishing.
 \end{thebibliography}
 \end{document}
