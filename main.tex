@@ -7,6 +7,7 @@
 \usepackage[backend=biber]{biblatex}
 \newtheorem*{theorem}{Theorem}
 \newtheorem*{definition}{Definition}
+\newtheorem*{lemma}{Lemma}
 
 \newcommand{\NN}{\mathbb{N}}
 \newcommand{\ZZ}{\mathbb{Z}}
@@ -59,9 +60,41 @@ Let $V = \{v_1, \ldots, v_n\}$ be a finite set. An \textbf{abstract simplicial c
 \end{enumerate}
 \end{definition}
 
-The abstract simplicial complex $\tilde{K}$ of a simplicial complex $K$ is also called its \emph{vertex scheme}. 
+The abstract simplicial complex $\tilde{K}$ of a simplicial complex $K$ is also called its \emph{vertex scheme}. Conversely, if an abstract complex $\tilde{K}$ is the vertex scheme of a complex $K$ in $\mathbb{R}^n$, then $K$ is called a \emph{geometric realization} of $\tilde{K}$.
+
+\begin{lemma}
+Every finite abstract simplicial complex $\tilde{K}$ has a geometric realization in an Euclidean space.
+\end{lemma}
+
+\begin{proof}
+Let $\{v_1,v_2, \ldots, v_n\}$ be the vertex set of $\tilde{K}$ where $n$ is the number of vertices of $\tilde{K}$, and let $\sigma \subset \mathbb{R}^n$ be the simplex spanned by $\{e_1, e_2, \ldots, e_n\}$ where, for any $i = 1, \ldots, n$, $e_i$ is the $i$th unit vector. Then $K$ is the subcomplex of $\sigma$ such that $[e_{i_0}, \ldots, e_{i_d}]$ is a $d$-simplex of $K$ if and only if $[v_{i_0}, \ldots, v_{i_k}]$ is a simplex of $\tilde{K}$.
+\end{proof}
+
+\paragraph{Note:} The realizations of an abstract simplicial complex are all homeomorphic to each other. The realization above is called \emph{natural realization}. It can also be proven that any finite abstract simplicial complex of dimension $n$ can be realized as a simplicial complex in $\mathbb{R}^{2d+1}$.
 
 \section{Homology Groups}
+Given the set $V$ of vertices of some simplex $\sigma$, we define an \emph{orientation} on the simplex by selecting an ordering of $V$. Vertex ordering that differ from our chosen order by an odd permutation are then designated as \emph{reversed}, while even permutations \emph{preserve} orientation. Thus, any simplex has only two possible orientations. An orientation on a $d$-simplex induces orientation on its $(d-1)$-faces. More formal, if $\sigma^{(d)} := (v_0, v_1, \ldots, v_d)$ is an oriented $d$-simplex, then the orientation of the $(d-1)$-face $\tau$ of $\sigma^{(d)}$ with vertex set $\{v_0,\ldots,v_{i-1},v_{i+1},\ldots,v_d\}$ is given by $\tau_i = (-1)^i (v_0, \ldots,v_{i-1},v_{i+1},\ldots,v_d)$.
+
+\begin{definition}
+Given a set $\{\sigma_1^{(d)}, \ldots, \sigma_k^{(d)}\}$ of arbitrarily oriented $d$-simplices of a complex $K$ and an abelian group $G$, we define a \textbf{$d$-chain} $c$ with coefficients $g_i \in G$ as a formal sum
+\begin{equation}
+c := g_1 \sigma^{(n)}_1 + g_2 \sigma^{(n)}_2 + \ldots + g_k \sigma^{(n)}_k = \sum_{i=1}^{k} g_i \sigma^{(n)}_i.
+\end{equation}
+\end{definition}
+
+\paragraph{Note:} Henceforth we will assume that $G = (\mathbb{Z},+)$.
+
+\begin{lemma}
+The set of $d$-chains $L_d$ is an abelian group $(L_d,+)$.
+\end{lemma}
+\begin{proof}
+The neutral element of the group is the empty chain $\sum_{i=1}^{d} e_G \sigma^{n}_i = e_G$. The sum of two chains is defined as $c+c' = \sum_{i=1}^{d} (g_i+g'_i) \sigma_i^{(n)}$, thus, we have that $c+c' \in L_d$. The associativity of the group operation of $L_d$ follows directly from the associativity of the group operation of $G$. The inverse element is also defined by the inverse element of the group $e_{L_d} = c + (-c) = \sum_{i=1}^{d} g_i \sigma_i^{(n)} - \sum_{i=1}^{d} (-g_i) \sigma_i^{(n)} =  \sum_{i=1}^{d} (g_i-g_i) \sigma_i^{(n)}$ with $c,-c \in L_d$.
+\end{proof}
+
+\begin{definition}
+
+\end{definition}
+
 \section{Singular Homology}
 \section{Chain Complexes}
 \section{Exact Sequences}
