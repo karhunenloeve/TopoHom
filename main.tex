@@ -8,6 +8,7 @@
 \newtheorem*{theorem}{Theorem}
 \newtheorem*{definition}{Definition}
 \newtheorem*{lemma}{Lemma}
+\newtheorem*{example}{Example}
 
 \newcommand{\NN}{\mathbb{N}}
 \newcommand{\ZZ}{\mathbb{Z}}
@@ -24,59 +25,60 @@
 
 \maketitle
 \begin{abstract}
-This paper examines the fundamental ideas of simplicial structures that lead to simplicial homology theory and introduces singular homology to demonstrate the equivalence of homology groups of homomorphic topological spaces. It concludes with a proof of the equivalence of simplicial and singular homology groups.
+This paper explores the foundational concepts of simplicial structures that form the basis of simplicial homology theory. It also introduces singular homology as a means to establish the equivalence of homology groups for homomorphic topological spaces. The paper concludes by providing a proof of the equivalence between simplicial and singular homology groups.
 \end{abstract}
 \tableofcontents
 
 \section{Simplicial Complexes}
-We remark, that a set of points $X = \{x_0, x_1, \ldots, x_d\}$ in $\mathbb{R}^n$ is said to be \emph{affinely independent} if the points are not contained in any affine subspace of dimension less than $d$.
+We would like to emphasize that a collection of points $X = \{x_0, x_1, \ldots, x_d\}$ in $\mathbb{R}^n$ is considered to be \emph{affinely independent} if these points do not lie within any affine subspace of dimension lower than $d$.
 
 \begin{definition}
-Given a set $X = \{x_0, x_1, \ldots, x_d\} \subset \mathbb{R}^n$ of $d+1$ \textbf{affinely independent} points, the $d$-dimensional simplex $\sigma$, or \textbf{\emph{$d$-simplex}}, spanned by $X$ is the set of convex combinations
+Given a set $X = \{x_0, x_1, \ldots, x_d\} \subset \mathbb{R}^n$ consisting of $d+1$ \textbf{affinely independent} points, the $d$-dimensional simplex $\sigma$, also known as a \textbf{\emph{$d$-simplex}}, is defined as the set of all convex combinations of these points.
 \begin{equation}
 	\sigma := \left\{\sum_{i=0}^{d} \lambda_i x_i \; \vert \; \sum_{i=0}^{d} \lambda_i = 1, \; \lambda_i \geq 0 \right\}.
 \end{equation}
 \end{definition}
 
-By convention the empty set $\emptyset$ is added to the faces as the simplex spanned by the empty subset of the vertices. A $0$-simplex corresponds to a single point, a $1$-simplex corresponds to a line segment connecting two points, a $2$-simplex corresponds to a triangle, and a $3$-simplex corresponds to a tetrahedron. It is worth noting that the $d$-simplex is homeomorphic to the $d$-disk $D^d$. 
+As a convention, the empty set $\emptyset$ is included as a face, representing the simplex formed by the empty subset of vertices. A $0$-simplex represents a single point, a $1$-simplex represents a line segment connecting two points, a $2$-simplex represents a triangle, and a $3$-simplex represents a tetrahedron. It is worth mentioning that the $d$-simplex is homeomorphic to the $d$-dimensional disk $D^d$.
 
-Additionally, $\sigma$ represents the convex hull of the points $X$, which is the smallest convex subset of $\mathbb{R}^n$ that contains $x_0, x_1, \ldots, x_d$. The \emph{faces} of the simplex $\sigma$ with vertex set $X$ are the simplices formed by subsets of $X$. An \emph{$d$-face} of a simplex is a subset of the vertices of the simplex with a cardinality of $d+1$. The faces of an $d$-simplex with a dimension less than $d$ are referred to as its \emph{proper faces}. Two simplices are considered to be \emph{properly situated} if their intersection is either empty or a face of both simplices. By identifying simplices along entire faces, we obtain the resulting \emph{simplicial complexes}.
+Furthermore, it is worth noting that $\sigma$ represents the convex hull of the points $X$, which can be defined as the smallest convex subset of $\mathbb{R}^n$ that contains all the points $x_0, x_1, \ldots, x_d$. The \emph{faces} of the simplex $\sigma$ with vertex set $X$ are simplices formed by subsets of $X$. An \emph{$d$-face} of a simplex refers to a subset of the vertices of the simplex with a cardinality of $d+1$. The faces of an $d$-simplex with a dimension less than $d$ are known as its \emph{proper faces}. Two simplices are considered to be \emph{properly situated} if their intersection is either empty or a face of both simplices. By identifying simplices along entire faces, we can construct the resulting \emph{simplicial complexes}.
 
 \begin{definition}
-A \textbf{simplicial complex} $K$ is a finite set of simplices such that
+A \textbf{simplicial complex} $K$ is a finite collection of simplices that satisfies the following properties:
 \begin{enumerate}
-	\item For all simplices $\sigma \subseteq K$ with $\tau$ being a face of $\sigma$, it holds that $\tau \subset K$.
-	\item $\sigma, \tau \subseteq K \implies \sigma, \tau$ are properly situated.
+	\item For every simplex $\sigma$ in $K$ and every face $\tau$ of $\sigma$, it follows that $\tau$ is also in $K$.
+	\item If $\sigma$ and $\tau$ are both simplices in $K$, then they are properly situated.
 \end{enumerate}
 \end{definition}
 
-The \emph{dimension} of $K$ is the highest dimension of its simplices. For a simplicial complex $K$ in $\mathbb{R}^n$, its \emph{underlying space} $\vert K \vert \subset \mathbb{R}^n$ is the union of the simplices of $K$. The topology of $K$ is the topology induced on $\vert K \vert$ by the standard topology in $\mathbb{R}^n$. Notice that when its vertex set is known, a simplicial complex in $\mathbb{R}^n$ is fully characterized by the list of its simplices. Thus, we can describe it in pure combinatorial terms by \emph{abstract simplicial complexes}.
+The \emph{dimension} of $K$ is defined as the highest dimension among its simplices. For a simplicial complex $K$ in $\mathbb{R}^n$, its \emph{underlying space} $\vert K \vert$ is the union of all the simplices in $K$. The topology of $K$ is determined by the topology induced on $\vert K \vert$ by the standard topology in $\mathbb{R}^n$. It is important to note that when the vertex set is known, a simplicial complex in $\mathbb{R}^n$ can be fully characterized by listing its simplices. As a result, we can describe it purely in terms of combinatorics using \emph{abstract simplicial complexes}.
 
 \begin{definition}
-Let $V = \{v_1, \ldots, v_n\}$ be a finite set. An \textbf{abstract simplicial complex $\tilde{K}$} with vertex set $V$ is a set of finite subsets of $V$ satisfying the two conditions:
+Consider a finite set $V = \{v_1, \ldots, v_n\}$. An \textbf{abstract simplicial complex $\tilde{K}$} with vertex set $V$ is a collection of finite subsets of $V$ that satisfies the following two conditions:
 \begin{enumerate}
-	\item The elements of $V$ belong to $\tilde{K}$.
-	\item If $\sigma \subset \tilde{K}$ and $\tau \subseteq \sigma$, then $\tau \subset \tilde{K}$.
+	\item All elements of $V$ are included in $\tilde{K}$.
+	\item If $\sigma$ is a subset of $\tilde{K}$ and $\tau$ is a subset of $\sigma$, then $\tau$ is also a subset of $\tilde{K}$.
 \end{enumerate}
 \end{definition}
 
-The abstract simplicial complex $\tilde{K}$ of a simplicial complex $K$ is also called its \emph{vertex scheme}. Conversely, if an abstract complex $\tilde{K}$ is the vertex scheme of a complex $K$ in $\mathbb{R}^n$, then $K$ is called a \emph{geometric realization} of $\tilde{K}$.
+The abstract simplicial complex $\tilde{K}$ associated with a simplicial complex $K$ is commonly referred to as its \emph{vertex scheme}. Conversely, if an abstract complex $\tilde{K}$ serves as the vertex scheme for a complex $K$ in $\mathbb{R}^n$, then $K$ is known as a \emph{geometric realization} of $\tilde{K}$.
 
 \begin{lemma}
-Every finite abstract simplicial complex $\tilde{K}$ has a geometric realization in an Euclidean space.
+Every finite abstract simplicial complex $\tilde{K}$ can be realized geometrically in a Euclidean space.
 \end{lemma}
 
 \begin{proof}
-Let $\{v_1,v_2, \ldots, v_n\}$ be the vertex set of $\tilde{K}$ where $n$ is the number of vertices of $\tilde{K}$, and let $\sigma \subset \mathbb{R}^n$ be the simplex spanned by $\{e_1, e_2, \ldots, e_n\}$ where, for any $i = 1, \ldots, n$, $e_i$ is the $i$th unit vector. Then $K$ is the subcomplex of $\sigma$ such that $[e_{i_0}, \ldots, e_{i_d}]$ is a $d$-simplex of $K$ if and only if $[v_{i_0}, \ldots, v_{i_k}]$ is a simplex of $\tilde{K}$.
+Let ${v_1,v_2, \ldots, v_n}$ denote the vertex set of $\tilde{K}$, where $n$ represents the number of vertices in $\tilde{K}$. Consider $\sigma \subset \mathbb{R}^n$, the simplex formed by the span of ${e_1, e_2, \ldots, e_n}$, where $e_i$ represents the $i$th unit vector. In this context, $K$ refers to the subcomplex of $\sigma$ such that $[e_{i_0}, \ldots, e_{i_d}]$ is a $d$-simplex of $K$ if and only if $[v_{i_0}, \ldots, v_{i_k}]$ is a simplex of $\tilde{K}$.
 \end{proof}
 
-\paragraph{Note:} The realizations of an abstract simplicial complex are all homeomorphic to each other. The realization above is called \emph{natural realization}. It can also be proven that any finite abstract simplicial complex of dimension $n$ can be realized as a simplicial complex in $\mathbb{R}^{2d+1}$.
+\paragraph{Note:}
+All realizations of an abstract simplicial complex are homeomorphic to each other. The specific realization mentioned above is referred to as the \emph{natural realization}. Furthermore, it has been proven that any finite abstract simplicial complex of dimension $n$ can be realized as a simplicial complex in $\mathbb{R}^{2d+1}$.
 
 \section{Homology Groups}
-Given the set $V$ of vertices of some simplex $\sigma$, we define an \emph{orientation} on the simplex by selecting an ordering of $V$. Vertex ordering that differ from our chosen order by an odd permutation are then designated as \emph{reversed}, while even permutations \emph{preserve} orientation. Thus, any simplex has only two possible orientations. An orientation on a $d$-simplex induces orientation on its $(d-1)$-faces. More formal, if $\sigma^{(d)} := (v_0, v_1, \ldots, v_d)$ is an oriented $d$-simplex, then the orientation of the $(d-1)$-face $\tau$ of $\sigma^{(d)}$ with vertex set $\{v_0,\ldots,v_{i-1},v_{i+1},\ldots,v_d\}$ is given by $\tau_i = (-1)^i (v_0, \ldots,v_{i-1},v_{i+1},\ldots,v_d)$.
+Given a set $V$ representing the vertices of a simplex $\sigma$, we can establish an \emph{orientation} for the simplex by selecting a specific ordering for the vertices. If the vertex ordering differs from our chosen order by an odd permutation, it is considered \emph{reversed}, while even permutations are said to \emph{preserve} the orientation. Consequently, any simplex can have only two possible orientations. Moreover, the orientation of a $d$-simplex induces an orientation on its $(d-1)$-faces. To be more precise, if $\sigma^{(d)} := (v_0, v_1, \ldots, v_d)$ represents an oriented $d$-simplex, then the orientation of the $(d-1)$-face $\tau$ of $\sigma^{(d)}$ with the vertex set $\{v_0,\ldots,v_{i-1},v_{i+1},\ldots,v_d\}$ is given by $\tau_i = (-1)^i (v_0, \ldots,v_{i-1},v_{i+1},\ldots,v_d)$.
 
 \begin{definition}
-Given a set $\{\sigma_1^{(d)}, \ldots, \sigma_k^{(d)}\}$ of arbitrarily oriented $d$-simplices of a complex $K$ and an abelian group $G$, we define a \textbf{$d$-chain} $c$ with coefficients $g_i \in G$ as a formal sum
+Given a set $\{\sigma_1^{(d)}, \ldots, \sigma_k^{(d)}\}$ of arbitrarily oriented $d$-simplices of a complex $K$ and an abelian group $G$, we define a \textbf{$d$-chain} $c$ with coefficients $g_i \in G$ as a formal sum.
 \begin{equation}
 c := g_1 \sigma^{(n)}_1 + g_2 \sigma^{(n)}_2 + \ldots + g_k \sigma^{(n)}_k = \sum_{i=1}^{k} g_i \sigma^{(n)}_i.
 \end{equation}
@@ -88,11 +90,49 @@ c := g_1 \sigma^{(n)}_1 + g_2 \sigma^{(n)}_2 + \ldots + g_k \sigma^{(n)}_k = \su
 The set of $d$-chains $L_d$ is an abelian group $(L_d,+)$.
 \end{lemma}
 \begin{proof}
-The neutral element of the group is the empty chain $\sum_{i=1}^{d} e_G \sigma^{n}_i = e_G$. The sum of two chains is defined as $c+c' = \sum_{i=1}^{d} (g_i+g'_i) \sigma_i^{(n)}$, thus, we have that $c+c' \in L_d$. The associativity of the group operation of $L_d$ follows directly from the associativity of the group operation of $G$. The inverse element is also defined by the inverse element of the group $e_{L_d} = c + (-c) = \sum_{i=1}^{d} g_i \sigma_i^{(n)} - \sum_{i=1}^{d} (-g_i) \sigma_i^{(n)} =  \sum_{i=1}^{d} (g_i-g_i) \sigma_i^{(n)}$ with $c,-c \in L_d$.
+The identity element of the group is represented by the empty chain $\sum_{i=1}^{k} e_G \sigma^{d}i = e_G$. The sum of two chains is defined as $c+c' = \sum{i=1}^{k} (g_i+g'i) \sigma_i^{(d)}$, thus, we can conclude that $c+c' \in L_d$. The associativity of the group operation in $L_d$ follows directly from the associativity of the group operation in $G$. The inverse element is defined as $e{L_d} = c + (-c) = \sum_{i=1}^{k} g_i \sigma_i^{(d)} - \sum_{i=1}^{k} (-g_i) \sigma_i^{(d)} = \sum_{i=1}^{k} (g_i-g_i) \sigma_i^{(d)}$ with $c,-c \in L_d$.
 \end{proof}
 
 \begin{definition}
+Let $\sigma^{(d)}$ be an oriented $d$-simplex in a complex $K$. The $\textbf{boundary}$ of $\sigma^{(d)}$ is defined as the $(d-1)$-chain of $K$ with coefficients in the abelian group $G = \mathbb{Z}$, given by
+\begin{equation}
+\partial(\sigma^{(d)}) = \sigma^{(d-1)}_0 + \sigma^{(d-1)}_1 + \ldots + \sigma^{(d-1)}_d = \sum_{i=1}^{d} \sigma^{(d-1)}_i
+\end{equation}
+where $\sigma^{(d-1)}_i$ is an $(d-1)$-face of $\sigma^{(d)}$. If $d=0$, we define $\partial(\sigma^{(0)}) = e_G = 0$.
+\end{definition}
 
+Since $\sigma^{(d)}$ is an oriented simplex, the $\sigma^{(d-1)}_i$-faces also have associated orientations. We can extend the definition of the boundary linearly to all elements of $L_d$.
+
+\begin{lemma}
+The \textbf{boundary operator} is a group homomorphism $\partial: L_d \rightarrow L_{d-1}$.
+\end{lemma}
+\begin{proof}
+We define the boundary operator for a $d$-chain $c = \sum_{i=1}^{k} g_i \sigma_i^{(d)}$ as follows: $\partial(c) = \sum_{i=1}^{k} g_i \partial(\sigma_i^{(d)}) = \sum_{i=1}^{k} g_i \sum_{j=1}^{d} \sigma_j^{(d-1)} = \sum_{i=1}^{k} \sum_{j=1}^{d} g_i \sigma_j^{(d-1)} \in L_{d-1}$, where $\sigma_i^{(d)}$ are the $d$-simplices of $K$. We can compute this by
+\begin{align}
+\partial(c + c') &= \partial(\sum_{i=1}^{k} g_i \sigma_i^{(d)} + \sum_{j=1}^{l} g'_j \sigma_j^{(d)}) \\
+&= \partial\left(\sum_{i=1}^{k} g_i \sigma_i^{(d)}\right) + \partial\left(\sum_{j=1}^{l} g'_j \sigma_j^{(d)}\right) \\
+&= \sum_{i=1}^{k} g_i \partial(\sigma_i^{(d)}) + \sum_{j=1}^{l} g'_j \partial(\sigma_j^{(d)}) \\
+&= \partial(c) + \partial(c').
+\end{align}
+\end{proof}
+
+\begin{example}
+Let's consider the $2$-simplex $\sigma^{(2)}$ with vertices $v_0$, $v_1$, and $v_2$. The $1$-faces of this simplex are $e_0 = (v_1,v_2)$ connecting $v_1$ and $v_2$, $e_1 = (v_2,v_0)$ connecting $v_2$ and $v_0$, and $e_2 = (v_0,v_1)$ connecting $v_0$ and $v_1$. Now, let's proceed with the computation.
+\begin{align}
+\partial(\partial(\sigma^{(2)})) &= \partial (e_1+e_2+e_3) \\
+&= \partial e_1 + \partial e_2 + \partial e_3 \\
+&= \partial(v_0,v_1) + \partial(v_1,v_2) + \partial(v_2,v_0) \\
+&= [(v_1)-(v_0)] + [(v_2)-(v_1)]+[(v_0)-(v_2)].
+\end{align}
+We observe that $L_0$ is an abelian group and that oppositely oriented simplices cancel each other out, resulting in $\partial(\partial(\sigma^{(2)})) = 0$. This property can be generalized to higher dimensions through induction. Therefore, since $\partial$ is a linear operator and the chain $c$ is a sum of $d$-simplices, we can conclude that $\partial^2(c) = 0$ for any $d$-chain $c$ in $L_d$. Consequently, the boundary of the boundary is zero. Moreover, if the boundary of a simplex is zero, it is referred to as a \emph{cycle}. By this definition, we can deduce that the boundary of any simplex is a cycle.
+\end{example}
+
+\begin{definition}
+A $d$-chain is referred to as a \textbf{cycle} if its boundary is equal to zero. We denote the set of $d$-cycles of a complex $K$ over the group $G=\mathbb{Z}$ as $Z_d$. It is important to note that $Z_d$ is a subgroup of $L_d$ and can also be expressed as $Z_d = \ker(\partial)$.
+\end{definition}
+
+\begin{definition}
+A $d$-cycle $o$ of a $k$-complex $K$ is said to be \textbf{homologous to zero} if it can be expressed as the boundary of an $(d+1)$-chain in $K$, where $d=0,1,\ldots,k-1$. In other words, a cycle is considered a boundary if it can be "filled in" by a higher-dimensional chain. This relationship is denoted as $x \tilde 0$, and the subgroup of $Z_d$ consisting of boundaries is referred to as the \textbf{boundary group $B_d$}. It is worth noting that $B_d$ is equal to the image of the boundary operator $\partial$.
 \end{definition}
 
 \section{Singular Homology}
@@ -107,7 +147,8 @@ The neutral element of the group is the empty chain $\sum_{i=1}^{d} e_G \sigma^{
 \bibitem{3} Hatcher, A. (2005). Algebraic Topology. Cambridge University Press.
 \bibitem{4} Jonsson, J. (2011). Introduction to Simplicial Homology. Königliche Technische Hochschule. URL: \url{https://people.kth.se/~jakobj/doc/homology/homology.pdf}.
 \bibitem{5} Khoury, M. (2022). Lecture 6: Introduction to Simplicial Homology. Topics in Computational Topology: An Algorithmic View. Ohio State University. URL: \url{http://web.cse.ohio-state.edu/~wang.1016/courses/788/Lecs/lec6-marc.pdf}.
-\bibitem{6} Nadathur, P. (2007). An Introduction to Homology. University of Chicago. URL: \url{https://www.math.uchicago.edu/~may/VIGRE/VIGRE2007/REUPapers/FINALFULL/Nadathur.pdf}.
-\bibitem{7} Melodia, L., Lenz, R. (2021). Estimate of the Neural Network Dimension Using Algebraic Topology and Lie Theory. In Pattern Recognition. ICPR International Workshops and Challenges.
+\bibitem{6} Melodia, L., Lenz, R. (2021). Estimate of the Neural Network Dimension Using Algebraic Topology and Lie Theory. In Pattern Recognition. ICPR International Workshops and Challenges.
+\bibitem{7} Nadathur, P. (2007). An Introduction to Homology. University of Chicago. URL: \url{https://www.math.uchicago.edu/~may/VIGRE/VIGRE2007/REUPapers/FINALFULL/Nadathur.pdf}.
+\bibitem{8} Pontryagin L. S. (1952): Foundations of Combinatorial Topology. Graylock Press.
 \end{thebibliography}
 \end{document}
