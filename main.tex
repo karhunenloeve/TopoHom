@@ -128,11 +128,17 @@ We observe that $L_0$ is an abelian group and that oppositely oriented simplices
 \end{example}
 
 \begin{definition}
-A $d$-chain is referred to as a \textbf{cycle} if its boundary is equal to zero. We denote the set of $d$-cycles of a complex $K$ over the group $G=\mathbb{Z}$ as $Z_d$. It is important to note that $Z_d$ is a subgroup of $L_d$ and can also be expressed as $Z_d = \ker(\partial)$.
+A $d$-chain is referred to as a \textbf{cycle} if its boundary is equal to zero. We denote the set of $d$-cycles of a complex $K$ over the group $\mathbb{Z}$ as $Z_d$, the \textbf{cycle group}. It is important to note that $Z_d$ is a subgroup of $L_d$ and can also be expressed as $Z_d = \ker(\partial)$.
 \end{definition}
 
 \begin{definition}
-A $d$-cycle $o$ of a $k$-complex $K$ is said to be \textbf{homologous to zero} if it can be expressed as the boundary of an $(d+1)$-chain in $K$, where $d=0,1,\ldots,k-1$. In other words, a cycle is considered a boundary if it can be "filled in" by a higher-dimensional chain. This relationship is denoted as $x \tilde 0$, and the subgroup of $Z_d$ consisting of boundaries is referred to as the \textbf{boundary group $B_d$}. It is worth noting that $B_d$ is equal to the image of the boundary operator $\partial$.
+A $d$-cycle $o$ of a $k$-complex $K$ is said to be \textbf{homologous to zero} if it can be expressed as the boundary of an $(d+1)$-chain in $K$, where $d=0,1,\ldots,k-1$. In other words, a cycle is considered a boundary if it can be "filled in" by a higher-dimensional chain. This equivalence relation is denoted as $x \sim 0$, and the subgroup of $Z_d$ consisting of boundaries is referred to as the \textbf{boundary group $B_d$}. It is worth noting that $B_d$ is equal to the image of the boundary operator $\partial$.
+\end{definition}
+
+Since $B_d$ is a subgroup of $Z_d$ and $Z_d$ is an abelian group, every subgroup of $Z_d$ is normal. Therefore, we can construct the quotient group $H_d = Z_d / B_d$.
+
+\begin{definition}
+The group $H_d$ represents the $d$-dimensional \textbf{homology group} of the complex $K$ over $\mathbb{Z}$. It can be expressed as the quotient group $\ker(\partial) / \text{im}(\partial)$.
 \end{definition}
 
 \section{Singular Homology}
