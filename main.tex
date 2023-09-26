@@ -5,10 +5,10 @@
 \usepackage{titlesec}
 \usepackage{url}
 \usepackage[backend=biber]{biblatex}
-\newtheorem*{theorem}{Theorem}
-\newtheorem*{definition}{Definition}
-\newtheorem*{lemma}{Lemma}
-\newtheorem*{example}{Example}
+\newtheorem{theorem}[section]{Theorem}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{example}[definition]{Example}
 
 \newcommand{\NN}{\mathbb{N}}
 \newcommand{\ZZ}{\mathbb{Z}}
@@ -153,9 +153,9 @@ The collection of all simplices in a complex $K$ with dimensions less than or eq
 A complex $K$ is considered \textbf{connected} if it cannot be expressed as the disjoint union of two or more non-empty subcomplexes. A geometric complex is \textbf{path-connected} if there exists a path consisting of $1$-simplices connecting any vertex to any other vertex.
 \end{definition}
 
-\begin{theorem}
+\begin{lemma}
 Path-connectedness $\Longleftrightarrow$ connectedness.
-\end{theorem}
+\end{lemma}
 
 \begin{proof}
 
