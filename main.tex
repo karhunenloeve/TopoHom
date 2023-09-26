@@ -141,6 +141,26 @@ Since $B_d$ is a subgroup of $Z_d$ and $Z_d$ is an abelian group, every subgroup
 The group $H_d$ represents the $d$-dimensional \textbf{homology group} of the complex $K$ over $\mathbb{Z}$. It can be expressed as the quotient group $\ker(\partial) / \text{im}(\partial)$.
 \end{definition}
 
+Next, we want to examine the structure of this homology group by shedding light on its connection to the connected components of a simplicial complex. We will find that the homology groups of the connected components of the complex, which in turn form a complex themselves, yield the direct sum of the homology group of the entire complex.
+
+\begin{definition}
+A \textbf{subcomplex} is defined as a subset $S$ of the simplices belonging to a complex $K$, where $S$ itself forms a complex.
+\end{definition}
+
+The collection of all simplices in a complex $K$ with dimensions less than or equal to $d$ is referred to as the $d$-skeleton of $K$. By definition, the $d$-skeleton forms a subcomplex.
+
+\begin{definition}
+A complex $K$ is considered \textbf{connected} if it cannot be expressed as the disjoint union of two or more non-empty subcomplexes. A geometric complex is \textbf{path-connected} if there exists a path consisting of $1$-simplices connecting any vertex to any other vertex.
+\end{definition}
+
+\begin{theorem}
+Path-connectedness $\Longleftrightarrow$ connectedness.
+\end{theorem}
+
+\begin{proof}
+
+\end{proof}
+
 \section{Singular Homology}
 \section{Chain Complexes}
 \section{Exact Sequences}
