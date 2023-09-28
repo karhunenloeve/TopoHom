@@ -8,6 +8,7 @@
 \newtheorem{theorem}[section]{Theorem}
 \newtheorem{definition}{Definition}[section]
 \newtheorem{lemma}[definition]{Lemma}
+\newtheorem{proposition}[definition]{Proposition}
 \newtheorem{example}[definition]{Example}
 
 \newcommand{\NN}{\mathbb{N}}
@@ -194,6 +195,22 @@ and consequently:
 \begin{equation}
 H_d = H_{d_1} \oplus \cdots \oplus H_{d_p}.
 \end{equation}
+\end{proof}
+
+\begin{definition}
+The \textbf{index} of a chain $c = \sum_{i=1}^{k} g_i \sigma_i^{(n)}$ is defined as the sum of the coefficients $I(c) = \sum_{i=1}^{k} g_i$.
+\end{definition}
+
+\begin{proposition}
+If $K$ is a connected complex and $c$ is a $0$-chain with $I(c) = 0$, then the condition $I(c) = 0$ is equivalent to $c \sim 0$, where $\sim$ denotes homology equivalence. Furthermore, in this case, the zeroth homology group $H_0(K,\mathbb{Z})$ is isomorphic to the integers $\mathbb{Z}$.
+\end{proposition}
+
+\begin{proof}
+We begin by proving that $c \sim 0 \implies I(c) = 0$. Let $\sigma^{(1)} = (v_0,v_1)$ be a $1$-simplex. Then, for a chain $c = \partial(g\sigma^{(1)}) = gv_1-gv_0$, we have $c \sim 0$. It is clear that $I(c) = I(g\sigma^{(1)}) = g-g = 0$. Since $I(c+c') = I(c) + I(c')$, $I$ is a group homomorphism. For any $c \in L_1$ of the form $\sum_{i=1}^{k} g_i \sigma_i^{(1)}$, where $\sigma_i^{(1)} = (v_i,v_{i+1})$, we have $c = \partial(c) \sim 0 \implies I(c) = I(\partial(c)) = 0$.
+
+To prove the forward direction, $I(x) = 0 \implies c \sim 0$, we consider two vertices $v$ and $w$ of $K$. Since $K$ is connected, there exists a path between $v$ and $w$ consisting of $1$-simplices $\sigma_i^{(1)} = (v_i,v_{i+1})$, $i=1,\ldots,k-1$, where $v_0 = v$ and $v_k = w$. We consider the boundary of the chain $c = \sum_{i=1}^{k} g \sigma_i^{(1)}$, given by $\partial(c) = \sum_{i=1}^{k}g \partial(\sigma_i^{(1)}) = \sum_{i=1}^{k}g [(v_{i+1}) - (v_i))] = gw - gv$. The index of the chain $c = \sum_{i=1}^{k} g_i \sigma_i^{(n)}$ is defined as $I(c) = \sum_{i=1}^{k} g_i$. Since $\partial(c)$ is a boundary, we have $c = \partial(c) \sim 0$. This implies that $(gw-gv) \sim 0$, which further implies $gw \sim gv$. Therefore, any $0$-chain $c$ in $K$ is homologous to the chain $gv$. We observe that homologous chains have equal indices, i.e., $I(c) = I(gv) = g$. Thus, we have $c \sim gv \implies c \sim I(c)v$. This shows that if $I(c) = 0$, then $c \sim 0$. Hence, $I(c) = 0$ is equivalent to $c \sim 0$.
+
+As mentioned, $I$ is a homomorphism from $L_0 = Z_0$ to $\mathbb{Z}$. For a $0$-simplex $c$ and $g \in \mathbb{Z}$, the chain $gc \in L_0$ is a cycle with $I(gc) = g$. Therefore, $I(Z_0) = \mathbb{Z}$. Since $I(c) = 0$ is equivalent to $c \sim 0$, we have $B_0 = \ker(I)$. This implies that $H_0 = Z_0/B_0 \cong \mathbb{Z}$.
 \end{proof}
 
 \section{Singular Homology}
