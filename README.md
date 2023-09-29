@@ -1,4 +1,4 @@
-# Simplicial Homology Theory
+# An Introduction to Simplicial Homology Theory
 This paper explores the foundational concepts of simplicial structures that form the basis of simplicial homology theory. It also introduces singular homology as a means to establish the equivalence of homology groups for homeomorphic topological spaces. The paper concludes by providing a proof of the equivalence between simplicial and singular homology groups.
 
 # Contents
