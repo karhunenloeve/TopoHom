@@ -167,6 +167,7 @@ Path-connectedness $\Longleftrightarrow$ connectedness.
 \end{proof}
 
 \begin{theorem}
+\label{decomptheorem}
 Let $K_1, \ldots, K_p$ be the collection of all connected components of a complex $K$. Furthermore, let $H_{d_i}$ represent the $d$th homology group of $K_i$, and $H_d$ denote the $d$th homology group of $K$. In this context, we can establish that $H_d$ is isomorphic to the direct sum $H_{d_1} \oplus \cdots \oplus H_{d_p}$.
 \end{theorem}
 
@@ -204,7 +205,7 @@ The \textbf{index} of a chain $c = \sum_{i=1}^{k} g_i \sigma_i^{(n)}$ is defined
 \end{definition}
 
 \begin{proposition}
-\label{decomposition}
+\label{a}
 If $K$ is a connected complex and $c$ is a $0$-chain with $I(c) = 0$, then the condition $I(c) = 0$ is equivalent to $c \sim 0$, where $\sim$ denotes homology equivalence. Furthermore, in this case, the zeroth homology group $H^\Delta_0(K,\mathbb{Z})$ is isomorphic to the integers $\mathbb{Z}$.
 \end{proposition}
 
@@ -219,6 +220,7 @@ As mentioned, $I$ is a homomorphism from $L_0 = Z_0$ to $\mathbb{Z}$. For a $0$-
 At this point, we can deduce the following corollary from Theorem \ref{pathconnect} and Proposition \ref{decomposition}:
 
 \begin{corollary}
+\label{directsum0hom}
 The zero-dimensional homology group of a complex $K$ over $\mathbb{Z}$ can be represented as $\mathbb{Z}^p = \bigoplus_p \mathbb{Z}$, where $p$ denotes the number of connected components present in $K$.
 \end{corollary}
 
@@ -279,6 +281,26 @@ As mentioned earlier, when we apply the boundary map twice to an $n$-chain $c$, 
 The \textbf{singular homology group} $H_n(X)$ is defined to be the quotient $H_n(X) = \ker(\partial_n) / \text{im}(\partial_{n+1})$.
 \end{definition}
 
+In the following section, we will explore how this definition of homology allows us to establish a simple relationship between homeomorphic spaces and their corresponding homology groups. This relationship becomes apparent when we consider the fact that the definitions of $H_d$ and $H^\Delta_d$ are analogous. Intuitively, we would expect these two groups to be the same. However, this is not immediately obvious. One reason for this is that $H^\Delta_d$ is finitely generated, while the chain group $C_d(X)$, from which we derived $H_d$, is uncountable.
+
+Interestingly, for spaces where both simplicial and singular homology groups can be calculated, these two groups are indeed equivalent. We will provide a proof for this later on. But before we do, let us present some facts about singular homology that support the intuition that $H_d$ is isomorphic to $H^\Delta_d$.
+
+\begin{proposition}
+In the context of a topological space $X$, it can be observed that $H_d(X)$ is isomorphic to the direct sum $H_d(X_1) \oplus \cdots \oplus H_d(X_p)$, where $X_i$ represents the path-connected components of $X$. This equivalence serves as the counterpart to Theorem \ref{decomptheorem}.\end{proposition}
+
+\begin{proof}
+As the maps $\tilde{\sigma}^{(d)}$ exhibit continuity, it can be deduced that a singular simplex always possesses a path-connected image within $X$. Consequently, $C_d(X)$ can be expressed as the direct sum of subgroups $C_d(X_1) \oplus \cdots \oplus C_d(X_p)$. The boundary map $\partial$ functions as a homomorphism, thereby preserving this decomposition. Consequently, $\ker(\partial_d)$ and $\text{im}(\partial_{d+1})$ also undergo a split, leading to the conclusion that $H_d(X) \cong H_d(X_1) \oplus H_d(X_2) \oplus \cdots \oplus H_d(X_p)$.
+\end{proof}
+
+
+\begin{proposition}
+The zero-dimensional homology group of a space $X$ can be expressed as the direct sum of $\mathbb{Z}$ copies, with each copy corresponding to a distinct path-component of $X$. This correspondence serves as the parallel to Corollary \ref{directsum0hom}.\end{proposition}
+
+\begin{proof}
+To establish the isomorphism $H_0(X) \cong \mathbb{Z}$, it is sufficient to consider the case where $X$ is path-connected. For a $0$-chain $c$, the boundary operator $\partial_0(c)$ is always zero since the boundary of any $0$-simplex vanishes. Consequently, $\ker(\partial_0) = C_0(X)$, which implies that $H_0(X) = C_0(X) / \text{im}(\partial_1)$ by definition.
+
+Let us define the map $I: C_0(X) \rightarrow \mathbb{Z}$, where $I(c) = \sum_i g_i$ for $c = \sum_i g_i \tilde{\sigma}^{(0)} \in C_0(X)$. Our goal is to demonstrate that $\ker(I) = \text{im}(\partial_1)$, or in other words, for any $0$-chain $c$, $I(c) = 0$ if and only if $c \sim 0$. The proof follows a similar line of reasoning as Proposition \ref{decomposition}.
+\end{proof}
 
 \begin{example}
 Alternative proof that $H_n(S^n) \cong \mathbb{Z}$. To prove that the $n$th homology group of the $n$-sphere is isomorphic to $\mathbb{Z}$, we will use the singular homology approach. Let $S^n$ denote the $n$-sphere. We will compute the $n$th homology group $H_n(S^n)$ using the singular chain complex. The $n$th singular chain group $C_n(S^n)$ consists of formal linear combinations of singular $n$-simplices in $S^n$ with integer coefficients. First, we note that $S^n$ is a connected and compact topological space. Therefore, by the Hurewicz theorem, we have $H_n(S^n) \cong \pi_n(S^n)$, where $\pi_n(S^n)$ denotes the $n$th homotopy group of $S^n$. Since $S^n$ is simply connected for $n \geq 2$, we have $\pi_n(S^n) = 0$ for $n \geq 2$. However, for $n = 1$, we have $\pi_1(S^1) \cong \mathbb{Z}$. Now, we need to establish the isomorphism between $\pi_1(S^1)$ and $H_1(S^1)$. To do this, we consider the singular $1$-chain group $C_1(S^1)$, which consists of formal linear combinations of singular $1$-simplices in $S^1$ with integer coefficients. Let $c$ be a singular $1$-chain in $C_1(S^1)$. We can write $c$ as $c = \sum_{i} g_i \tilde{\sigma}^{(1)}_i$, where $g_i \in \mathbb{Z}$ and $\tilde{\sigma}^{(1)}_i$ are singular $1$-simplices. The boundary of $c$ is given by $\partial(c) = \sum_{i} g_i \partial(\tilde{\sigma}^{(1)}_i)$. Since $S^1$ is a $1$-dimensional manifold, the boundary of any singular $1$-simplex $\tilde{\sigma}^{(1)}_i$ is a formal linear combination of two points in $S^1$, each with opposite orientations. Therefore, $\partial(\tilde{\sigma}^{(1)}_i) = p - q$, where $p$ and $q$ are points in $S^1$. Hence, we have $\partial(c) = \sum_{i} g_i (p - q) = (p - q) \sum_{i} g_i$. Since $p$ and $q$ are fixed points in $S^1$, the sum $\sum_{i} g_i$ is an integer. Therefore, the boundary of any singular $1$-chain $c$ in $C_1(S^1)$ is of the form $(p - q)k$, where $k$ is a constant integer. This implies that $H_1(S^1) = Z_1(S^1) / B_1(S^1) \cong \mathbb{Z}$, where $Z_1(S^1)$ is the group of $1$-cycles and $B_1(S^1)$ is the group of $1$-boundaries. In conclusion, we have shown that $H^\Delta_n(S^n) \cong \pi_n(S^n) = 0$ for $n \geq 2$, and $H_1(S^1) \cong \pi_1(S^1) \cong \mathbb{Z}$. Therefore, the $n$th homology group of the $n$-sphere is isomorphic to $\mathbb{Z}$.
@@ -287,7 +309,7 @@ Alternative proof that $H_n(S^n) \cong \mathbb{Z}$. To prove that the $n$th homo
 \section{Chain Complexes}
 \section{Exact Sequences}
 \section{Relative Homology Groups}
-\section{Equivalence of Simplicial Homology Group $H_n^\Delta$ \\ and Singular Homology Group $H_n$}
+\section{Equivalence of Simplicial Homology Group $H_d^\Delta$ \\ and Singular Homology Group $H_d$}
 
 \begin{thebibliography}{100}
 \bibitem{1} Boissonnat, J. D., Chazal, F., Yvinec, M. (2018). Geometric and Topological Inference (Vol. 57). Cambridge University Press.
