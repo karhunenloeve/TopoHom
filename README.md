@@ -1,6 +1,5 @@
 # Simplicial Homology Theory
-This paper examines the fundamental ideas of simplicial structures that lead to simplicial homology theory and introduces singular homology to demonstrate the equivalence of homology groups of homomorphic topological spaces.
-It concludes with a proof of the equivalence of simplicial and singular homology groups.
+This paper explores the foundational concepts of simplicial structures that form the basis of simplicial homology theory. It also introduces singular homology as a means to establish the equivalence of homology groups for homeomorphic topological spaces. The paper concludes by providing a proof of the equivalence between simplicial and singular homology groups.
 
 # Contents
 1. Simplicial Complexes
@@ -9,7 +8,7 @@ It concludes with a proof of the equivalence of simplicial and singular homology
 4. Chain Complexes
 5. Exact Sequences
 6. Relative Homology Groups
-7. The Equivalence of $H_k^\Delta$ and $H_k$
+7. The Equivalence of Simplicial Homology Group $H_d^\Delta$ and Singular Homology Group $H_d$
 
 # References
 1. Boissonnat, J. D., Chazal, F., Yvinec, M. (2018). Geometric and Topological Inference (Vol. 57). Cambridge University Press.
