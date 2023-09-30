@@ -3,6 +3,7 @@
 \usepackage[english]{babel}
 \usepackage{amsthm,amssymb,amsmath}
 \usepackage{titlesec}
+\usepackage{tikz-cd}
 \usepackage{url}
 \usepackage[backend=biber]{biblatex}
 \newtheorem{theorem}[section]{Theorem}
@@ -309,6 +310,46 @@ Now, we need to establish the isomorphism between $\pi_1(S^1)$ and $H_1(S^1)$. T
 \end{example}
 
 \section{Chain Complexes}
+In order to establish the equivalence between the groups $H_d^\Delta$ and $H_d$, we will introduce some concepts that will aid us in our proof.
+
+Firstly, since the maps $\tilde{\sigma}^{(d)}$ are continuous, it follows that a singular simplex always has a path-connected image in $X$. As a result, we can express $C_d(X)$ as the direct sum of subgroups $C_d(X_1) \oplus \cdots \oplus C_d(X_p)$, where each subgroup corresponds to a distinct path-component of $X$. This decomposition is preserved by the boundary map $\partial$, which is a homomorphism. Consequently, both $\ker(\partial_d)$ and $\text{im}(\partial_{d+1})$ also split, leading to the conclusion that $H_d(X)$ is isomorphic to $H_d(X_1) \oplus H_d(X_2) \oplus \cdots \oplus H_d(X_p)$.
+
+These ideas will serve as valuable tools in our endeavor to prove the equivalence of the groups $H_d^\Delta$ and $H_d$.
+
+\begin{definition}
+A \textbf{chain complex} is an arrangement of abelian groups, linked together by homomorphisms (referred to as boundary operators), in such a way that the result of combining any two consecutive maps is precisely zero.
+\end{definition}
+
+\begin{example}
+The groups $C_d(X)$ represent the collection of singular $d$-chains that form a part of a chain complex, where the boundary operator $\partial_d$ guides the flow between these groups.
+\begin{equation}
+\cdots \xrightarrow{} C_{d+1} \xrightarrow{\partial_{d+1}} C_d \xrightarrow{\partial_d} C_{d-1} \xrightarrow{} \cdots \xrightarrow{} C_1 \xrightarrow{\partial_1} C_0 \xrightarrow{\partial_0} 0.
+\end{equation}
+\end{example}
+
+\begin{definition}
+A \textbf{chain map} $f$ between two chain complexes $(A, \partial_A)$ and $(B,\partial_B)$ is a collection of maps $f_d: A_d \rightarrow B_d$ such that for each $d$, the following conditions hold:
+\begin{itemize}
+    \item $f_d$ commutes with the operator $\partial_A$, i.e., $\partial_A \circ f_d = f_{d-1} \circ \partial_A$.
+    \item $f_d$ commutes with the operator $\partial_B$, i.e., $\partial_B \circ f_d = f_{d-1} \circ \partial_B$.
+\end{itemize}
+\end{definition}
+
+\begin{equation}
+\begin{tikzcd}
+\cdots \arrow[r, "\partial_A" description] & A_{d+1} \arrow[r, "\partial_A" description] \arrow[d, "f_{d+1}" description] & A_d \arrow[r, "\partial_A" description] \arrow[d, "f_d" description] & A_{d-1} \arrow[r, "\partial_A" description] \arrow[d, "f_{d-1}" description] & \cdots \\
+\cdots \arrow[r, "\partial_B" description] & B_{d+1} \arrow[r, "\partial_B" description]                                  & B_d \arrow[r, "\partial_B" description]                              & B_{d-1} \arrow[r, "\partial_B" description]                                  & \cdots
+\end{tikzcd}
+\end{equation}
+
+\begin{theorem}
+A chain map $f$ between two chain complexes $(A, \partial_A)$ and $(B,\partial_B)$ induces a homomorphism between their respective homology groups.
+\end{theorem}
+
+\begin{proof}
+Given a chain map $f$ between two chain complexes $(A, \partial_A)$ and $(B,\partial_B)$, we want to show that $f$ induces a homomorphism $f_\star: H_d(A) \rightarrow H_d(B)$. By the definition of a chain map, we have $f \circ \partial_A = \partial_B \circ f$. Let $[c] \in Z_d(A)$ be a cycle in $A$, i.e., $\partial_A(c) = 0$. Applying $f$ to both sides of this equation, we get $f(\partial_A(c)) = \partial_B(f(c))$. Since $\partial_A(c) = 0$, we have $f(0) = \partial_B(f(c))$, which implies $\partial_B(f(c)) = 0$. Therefore, $f(c)$ is a cycle in $B$. Now, let $[b] \in B_d(A)$ be a boundary in $A$, i.e., there exists $a \in A_{d+1}$ such that $\partial_A(a) = b$. Applying $f$ to both sides of this equation, we get $f(\partial_A(a)) = \partial_B(f(a))$. Since $\partial_A(a) = b$, we have $f(b) = \partial_B(f(a))$. Therefore, $f(b)$ is a boundary in $B$. From the above, we see that $f$ maps cycles in $A$ to cycles in $B$ and boundaries in $A$ to boundaries in $B$. Hence, $f$ induces a well-defined map $f_\star: H_d(A) \rightarrow H_d(B)$, where $H_d(A)$ and $H_d(B)$ are the homology groups of $A$ and $B$ at dimension $d$, respectively. To show that $f_\star$ is a homomorphism, let $[c_1], [c_2] \in H_d(A)$ be two homology classes. We want to show that $f_\star([c_1] + [c_2]) = f_\star([c_1]) + f_\star([c_2])$. Let $c_1$ and $c_2$ be representatives of $[c_1]$ and $[c_2]$ respectively. Then, $[c_1] + [c_2]$ is represented by $c_1 + c_2$. Applying $f$ to both sides, we have $f(c_1 + c_2) = f(c_1) + f(c_2)$. Since $f(c_1)$ and $f(c_2)$ are cycles in $B$, we have $[f(c_1 + c_2)] = [f(c_1)] + [f(c_2)]$. Therefore, $f_\star([c_1] + [c_2]) = f_\star([c_1]) + f_\star([c_2])$. Hence, we have shown that the chain map $f$ induces a homomorphism $f_\star: H_d(A) \rightarrow H_d(B)$.
+\end{proof}
+
 \section{Exact Sequences}
 \section{Relative Homology Groups}
 \section{Equivalence of Simplicial Homology Group $H_d^\Delta$ \\ and Singular Homology Group $H_d$}
