@@ -6,7 +6,7 @@ This paper explores the foundational concepts of simplicial structures that form
 2. Homology Groups
 3. Singular Homology
 4. Chain Complexes
-5. Exact Sequences
+5. Exact and Short Exact Sequences
 6. Relative Homology Groups
 7. The Equivalence of Simplicial Homology Group $H_d^\Delta$ and Singular Homology Group $H_d$
 
