@@ -3,19 +3,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage{amsthm,amssymb,amsmath}
-\usepackage[indentafter]{titlesec}
-\titleformat{name=\section}{}{\thetitle.}{0.8em}{\centering\scshape}
-\titleformat{name=\subsection}[runin]{}{\thetitle.}{0.5em}{\bfseries}[.]
-\titleformat{name=\subsubsection}[runin]{}{\thetitle.}{0.5em}{\itshape}[.]
-\titleformat{name=\paragraph,numberless}[runin]{}{}{0em}{}[.]
-\titlespacing{\paragraph}{0em}{0em}{0.5em}
-\titleformat{name=\subparagraph,numberless}[runin]{}{}{0em}{}[.]
-\titlespacing{\subparagraph}{0em}{0em}{0.5em}
-\usepackage{tocloft}
 \usepackage{tikz-cd}
 \usepackage{url}
-\usepackage{euler}
-
 \usepackage[backend=biber]{biblatex}
 \newtheorem{theorem}[section]{Theorem}
 \newtheorem{definition}{Definition}[section]
@@ -39,35 +28,35 @@
 \date{\today}
 
 \begin{document}
-\makeatletter
-\makeatother
 \maketitle
 
 \begin{abstract}
 This paper explores the foundational concepts of simplicial structures that form the basis of simplicial homology theory. It also introduces singular homology as a means to establish the equivalence of homology groups for homeomorphic topological spaces. The paper concludes by providing a proof of the equivalence between simplicial and singular homology groups.
 
-We follow the structure and explanations provided by Nadathur [7] and Hatcher [3]. In particular, the definitions are taken from the introductory book of Boissonnat et al. [1], as well as from Jonsson's introduction [4] and the paper on computational topology by Melodia et al. [6]. Some individual lemmas and proof ideas are drawn from Khoury [5] or from the textbook by Edelsbrunner et al. [2], but they have been adapted, expanded, and implemented independently. To enhance readability, we have omitted source citations within the text.
+We follow the structure and explanations provided by Nadathur [7] and Hatcher [3]. In particular, the definitions are taken from the introductory book of Boissonnat et al. [1], as well as from Jonsson's introduction [4] and the paper on computational topology by Melodia et al. [6]. Some individual lemmas and proof ideas are drawn from Khoury [5] or from the textbook by Edelsbrunner et al. [2], but they have been adapted, expanded, and implemented independently. To enhance readability, we have omitted reference citations within the text.
 \end{abstract}
+
+\tableofcontents
 
 \section{Simplicial Complexes}
 We would like to emphasize that a collection of points $X = \{x_0, x_1, \ldots, x_d\}$ in $\mathbb{R}^n$ is considered to be \emph{affinely independent} if these points do not lie within any affine subspace of dimension lower than $d$.
 
 \begin{definition}
-Given a set $X = \{x_0, x_1, \ldots, x_d\} \subset \mathbb{R}^n$ consisting of $d+1$ \textbf{affinely independent} points, the $d$-dimensional simplex $\sigma$, also known as a \textbf{\emph{$d$-simplex}}, is defined as the set of all convex combinations of these points.
+Given a set $X = \{x_0, x_1, \ldots, x_d\} \subset \mathbb{R}^n$ consisting of $d+1$ \textbf{affinely independent} points, the $d$-dimensional simplex $\sigma^{(d)}$, also known as a \textbf{\emph{$d$-simplex}}, is defined as the set of all convex combinations of these points.
 \begin{equation}
-	\sigma := \left\{\sum_{i=0}^{d} \lambda_i x_i \; \vert \; \sum_{i=0}^{d} \lambda_i = 1, \; \lambda_i \geq 0 \right\}.
+	\sigma^{(d)} := \left\{\sum_{i=0}^{d} \lambda_i x_i \; \vert \; \sum_{i=0}^{d} \lambda_i = 1, \; \lambda_i \geq 0 \right\}.
 \end{equation}
 \end{definition}
 
 As a convention, the empty set $\emptyset$ is included as a face, representing the simplex formed by the empty subset of vertices. A $0$-simplex represents a single point, a $1$-simplex represents a line segment connecting two points, a $2$-simplex represents a triangle, and a $3$-simplex represents a tetrahedron. It is worth mentioning that the $d$-simplex is homeomorphic to the $d$-dimensional disk $D^d$.
 
-Furthermore, it is worth noting that $\sigma$ represents the convex hull of the points $X$, which can be defined as the smallest convex subset of $\mathbb{R}^n$ that contains all the points $x_0, x_1, \ldots, x_d$. The \emph{faces} of the simplex $\sigma$ with vertex set $X$ are simplices formed by subsets of $X$. An \emph{$d$-face} of a simplex refers to a subset of the vertices of the simplex with a cardinality of $d+1$. The faces of an $d$-simplex with a dimension less than $d$ are known as its \emph{proper faces}. Two simplices are considered to be \emph{properly situated} if their intersection is either empty or a face of both simplices. By identifying simplices along entire faces, we can construct the resulting \emph{simplicial complexes}.
+Furthermore, it is worth noting that $\sigma^{(d)}$ represents the convex hull of the points $X$, which can be defined as the smallest convex subset of $\mathbb{R}^n$ that contains all the points $x_0, x_1, \ldots, x_d$. The \emph{faces} of the simplex $\sigma^{(d)}$ with vertex set $X$ are simplices formed by subsets of $X$. An \emph{$d$-face} of a simplex refers to a subset of the vertices of the simplex with a cardinality of $d+1$. The faces of an $d$-simplex with a dimension less than $d$ are known as its \emph{proper faces}. Two simplices are considered to be \emph{properly situated} if their intersection is either empty or a face of both simplices. By identifying simplices along entire faces, we can construct the resulting \emph{simplicial complexes}.
 
 \begin{definition}
 A \textbf{simplicial complex} $K$ is a finite collection of simplices that satisfies the following properties:
 \begin{enumerate}
-	\item For every simplex $\sigma$ in $K$ and every face $\tau$ of $\sigma$, it follows that $\tau$ is also in $K$.
-	\item If $\sigma$ and $\tau$ are both simplices in $K$, then they are properly situated.
+	\item For every simplex $\sigma^{(d)}$ in $K$ and every face $\tau^{(k)}$ with $k < d$ of $\sigma^{(d)}$, it follows that $\tau^{(k)}$ is also in $K$.
+	\item If $\sigma^{(d)}$ and $\tau^{(k)}$ are both simplices in $K$, then they are properly situated.
 \end{enumerate}
 \end{definition}
 
@@ -77,7 +66,7 @@ The \emph{dimension} of $K$ is defined as the highest dimension among its simpli
 Consider a finite set $V = \{v_1, \ldots, v_n\}$. An \textbf{abstract simplicial complex $\tilde{K}$} with vertex set $V$ is a collection of finite subsets of $V$ that satisfies the following two conditions:
 \begin{enumerate}
 	\item All elements of $V$ are included in $\tilde{K}$.
-	\item If $\sigma$ is a subset of $\tilde{K}$ and $\tau$ is a subset of $\sigma$, then $\tau$ is also a subset of $\tilde{K}$.
+	\item If $\sigma^{(d)}$ is a subset of $\tilde{K}$ and $\tau^{(k)}$ is a subset of $\sigma^{(d)}$, then $\tau^{(k)}$ is also a subset of $\tilde{K}$.
 \end{enumerate}
 \end{definition}
 
@@ -88,14 +77,14 @@ Every finite abstract simplicial complex $\tilde{K}$ can be realized geometrical
 \end{lemma}
 
 \begin{proof}
-Let $\{v_1,v_2, \ldots, v_n\}$ denote the vertex set of $\tilde{K}$, where $n$ represents the number of vertices in $\tilde{K}$. Consider $\sigma \subset \mathbb{R}^n$, the simplex formed by the span of $\{e_1, e_2, \ldots, e_n\}$, where $e_i$ represents the $i$th unit vector. In this context, $K$ refers to the subcomplex of $\sigma$ such that $[e_{i_0}, \ldots, e_{i_d}]$ is a $d$-simplex of $K$ if and only if $[v_{i_0}, \ldots, v_{i_k}]$ is a simplex of $\tilde{K}$.
+Let $\{v_1,v_2, \ldots, v_n\}$ denote the vertex set of $\tilde{K}$, where $n$ represents the number of vertices in $\tilde{K}$. Consider $\sigma^{(n-1)} \subset \mathbb{R}^n$, the simplex formed by the span of $\{e_1, e_2, \ldots, e_n\}$, where $e_i$ represents the $i$th unit vector. In this context, $K$ refers to the subcomplex of $\sigma$ such that $[e_{i_0}, \ldots, e_{i_d}]$ is a $d$-simplex of $K$ if and only if $[v_{i_0}, \ldots, v_{i_d}]$ is a simplex of $\tilde{K}$.
 \end{proof}
 
 \paragraph{Note:}
-All realizations of an abstract simplicial complex are homeomorphic to each other. The specific realization mentioned above is referred to as the \emph{natural realization}. Furthermore, it has been proven that any finite abstract simplicial complex of dimension $n$ can be realized as a simplicial complex in $\mathbb{R}^{2d+1}$.
+All realizations of an abstract simplicial complex are homeomorphic to each other. The specific realization mentioned above is referred to as the \emph{natural realization}. Furthermore, it has been proven that any finite abstract simplicial complex of dimension $d$ can be realized as a simplicial complex in $\mathbb{R}^{2d+1}$.
 
 \section{Homology Groups}
-Given a set $V$ representing the vertices of a simplex $\sigma$, we can establish an \emph{orientation} for the simplex by selecting a specific ordering for the vertices. If the vertex ordering differs from our chosen order by an odd permutation, it is considered \emph{reversed}, while even permutations are said to \emph{preserve} the orientation. Consequently, any simplex can have only two possible orientations. Moreover, the orientation of a $d$-simplex induces an orientation on its $(d-1)$-faces. To be more precise, if $\sigma^{(d)} := (v_0, v_1, \ldots, v_d)$ represents an oriented $d$-simplex, then the orientation of the $(d-1)$-face $\tau$ of $\sigma^{(d)}$ with the vertex set $\{v_0,\ldots,v_{i-1},v_{i+1},\ldots,v_d\}$ is given by $\tau_i = (-1)^i (v_0, \ldots,v_{i-1},v_{i+1},\ldots,v_d)$.
+Given a set $V$ representing the vertices of a $d$-simplex $\sigma^{(d)}$, we can establish an \emph{orientation} for the simplex by selecting a specific ordering for the vertices. If the vertex ordering differs from our chosen order by an odd permutation, it is considered \emph{reversed}, while even permutations are said to \emph{preserve} the orientation. Consequently, any simplex can have only two possible orientations. Moreover, the orientation of a $d$-simplex induces an orientation on its $(d-1)$-faces. To be more precise, if $\sigma^{(d)} := (v_0, v_1, \ldots, v_d)$ represents an oriented $d$-simplex, then the orientation of the $(d-1)$-face $\tau^{(d-1)}$ of $\sigma^{(d)}$ with the vertex set $\{v_0,\ldots,v_{i-1},v_{i+1},\ldots,v_d\}$ is given by $\tau_i^{(d-1)} = (-1)^i (v_0, \ldots,v_{i-1},v_{i+1},\ldots,v_d)$.
 
 \begin{definition}
 Given a set $\{\sigma_1^{(d)}, \ldots, \sigma_k^{(d)}\}$ of arbitrarily oriented $d$-simplices of a complex $K$ and an abelian group $G$, we define a \textbf{$d$-chain} $c$ with coefficients $g_i \in G$ as a formal sum.
@@ -110,13 +99,13 @@ c := g_1 \sigma^{(d)}_1 + g_2 \sigma^{(d)}_2 + \ldots + g_k \sigma^{(d)}_k = \su
 The set of simplicial $d$-chains $L^\Delta_d$ is an abelian group $(L^\Delta_d,+)$.
 \end{lemma}
 \begin{proof}
-The identity element of the group is represented by the empty chain $\sum_{i=1}^{k}$ $e_G \sigma^{d}_i$ $= e_G$. The sum of two chains is defined as $c+c' = \sum_{i=1}^{k} g_i \sigma_i^{(d)}$ $+ \sum_{j=1}^{l} g'_j \sigma_j^{(d)}$ $=$ $\sum_{i=1}^{k} (g_i+g_i') \sigma_i^{(d)}$ $+$ $\sum_{j=k}^{l} g'_j \sigma_j^{(d)}$ if $k \leq l$ and $c+c' = \sum_{i=1}^{k} g_i \sigma_i^{(d)} + \sum_{j=1}^{l} g'_j \sigma_j^{(d)} = \sum_{i=1}^{l} (g_i+g_i') \sigma_i^{(d)} + \sum_{j=l}^{k} g_j \sigma_j^{(d)}$ if $k > l$, thus, we can conclude that $c+c' \in L^\Delta_d$. The associativity of the group operation in $L^\Delta_d$ follows directly from the associativity of the group operation in $G$. The inverse element is defined by $e_{L^\Delta_d} = c + (-c) = \sum_{i=1}^{k} g_i \sigma_i^{(d)} - \sum_{i=1}^{k} (-g_i) \sigma_i^{(d)} = \sum_{i=1}^{k} (g_i-g_i) \sigma_i^{(d)}$ with $c,-c \in L^\Delta_d$.
+The identity element of the group is represented by the empty chain $\sum_{i=1}^{k}$ $e_G \sigma^{d}_i$ $= e_{L_d^\Delta}$. The sum of two chains is defined as $c+c' = \sum_{i=1}^{k} g_i \sigma_i^{(d)}$ $+ \sum_{j=1}^{l} g'_j \sigma_j^{(d)}$ $=$ $\sum_{i=1}^{k} (g_i+g_i') \sigma_i^{(d)}$ $+$ $\sum_{j=k}^{l} g'_j \sigma_j^{(d)}$ if $k \leq l$ and $c+c' = \sum_{i=1}^{k} g_i \sigma_i^{(d)} + \sum_{j=1}^{l} g'_j \sigma_j^{(d)} = \sum_{i=1}^{l} (g_i+g_i') \sigma_i^{(d)} + \sum_{j=l}^{k} g_j \sigma_j^{(d)}$ if $k > l$, thus, we can conclude that $c+c' \in L^\Delta_d$. The associativity of the group operation in $L^\Delta_d$ follows directly from the associativity of the group operation in $G$. The inverse element is defined by $e_{L^\Delta_d} = c + (-c) = \sum_{i=1}^{k} g_i \sigma_i^{(d)} - \sum_{i=1}^{k} (-g_i) \sigma_i^{(d)} = \sum_{i=1}^{k} (g_i-g_i) \sigma_i^{(d)}$ with $c,-c \in L^\Delta_d$.
 \end{proof}
 
 \begin{definition}
-Let $\sigma^{(d)}$ be an oriented $d$-simplex in a complex $K$. The $\textbf{boundary}$ of $\sigma^{(d)}$ is defined as the simplicial $(d-1)$-chain of $K$ with coefficients in the abelian group $G = \mathbb{Z}$, given by
+Let $\sigma^{(d)}$ be an oriented $d$-simplex in a complex $K$. The $\textbf{boundary}$ of $\sigma^{(d)}$ is defined as the simplicial $(d-1)$-chain of $K$ with coefficients in the abelian group $g_i \in G = \mathbb{Z}$, given by
 \begin{equation}
-\partial(\sigma^{(d)}) = \sigma^{(d-1)}_0 + \sigma^{(d-1)}_1 + \ldots + \sigma^{(d-1)}_d = \sum_{i=1}^{d} \sigma^{(d-1)}_i
+\partial(\sigma^{(d)}) = g_0 \sigma^{(d-1)}_0 + g_1 \sigma^{(d-1)}_1 + \ldots + g_d \sigma^{(d-1)}_d = \sum_{i=1}^{d} g_i \sigma^{(d-1)}_i
 \end{equation}
 where $\sigma^{(d-1)}_i$ is an $(d-1)$-face of $\sigma^{(d)}$. If $d=0$, we define $\partial(\sigma^{(0)}) = e_G = 0$.
 \end{definition}
@@ -151,13 +140,13 @@ A $d$-chain is referred to as a \textbf{cycle} if its boundary is equal to zero.
 \end{definition}
 
 \begin{definition}
-A $d$-cycle of a $k$-complex $K$ is said to be \textbf{homologous to zero} if it can be expressed as the boundary of an $(d+1)$-chain in $K$, where $d=0,1,\ldots,k-1$. In other words, a cycle is considered a boundary if it can be \glqq filled in\grqq{} by a higher-dimensional chain. This equivalence relation is denoted as $c \sim 0$, and the subgroup of $Z^\Delta_d$ consisting of boundaries is referred to as the simplicial \textbf{boundary group $B^\Delta_d$}. It is worth noting that $B^\Delta_d$ is equal to the image of the boundary operator $\partial$.
+A $d$-cycle of a $k$-complex $K$ is said to be \textbf{homologous to zero} if it can be expressed as the boundary of an $(d+1)$-chain in $K$, where $d=0,1,\ldots,k-1$. In other words, a cycle is considered a boundary if it can be \glqq filled in\grqq{} by a higher-dimensional chain. This equivalence relation is denoted as $c \sim 0$, and the subgroup of $Z^\Delta_d$ consisting of boundaries is referred to as the simplicial \textbf{boundary group $B^\Delta_d$}. It is worth noting that $B^\Delta_d$ is equal to the image of the boundary operator $\partial_{d+1}$.
 \end{definition}
 
 Since $B^\Delta_d$ is a subgroup of $Z^\Delta_d$ and $Z^\Delta_d$ is an abelian group, every subgroup of $Z^\Delta_d$ is normal. Therefore, we can construct the quotient group $H^\Delta_d = Z^\Delta_d / B^\Delta_d$.
 
 \begin{definition}
-The group $H^\Delta_d$ represents the $d$-dimensional simplicial \textbf{homology group} of the complex $K$ over $\mathbb{Z}$. It can be expressed as the quotient group $\ker(\partial) / \text{im}(\partial)$.
+The group $H^\Delta_d$ represents the $d$-dimensional simplicial \textbf{homology group} of the complex $K$ over $\mathbb{Z}$. It can be expressed as the quotient group $\ker(\partial_d) / \text{im}(\partial_{d+1})$.
 \end{definition}
 
 Next, we want to examine the structure of this homology group by shedding light on its connection to the connected components of a simplicial complex. We will find that the homology groups of the connected components of the complex, which in turn form a complex themselves, yield the direct sum of the homology group of the entire complex.
@@ -166,7 +155,11 @@ Next, we want to examine the structure of this homology group by shedding light 
 A \textbf{subcomplex} is defined as a subset $S$ of the simplices belonging to a complex $K$, where $S$ itself forms a complex.
 \end{definition}
 
-The collection of all simplices in a complex $K$ with dimensions less than or equal to $d$ is referred to as the $d$-skeleton of $K$. By definition, the $d$-skeleton forms a subcomplex.
+\begin{definition}
+The collection of all simplices in a complex $K$ with dimensions less than or equal to $d$ is referred to as the \textbf{$d$-skeleton} of $K$.
+\end{definition}
+
+By definition, the $d$-skeleton forms a subcomplex.
 
 \begin{definition}
 A complex $K$ is considered \textbf{connected} if it cannot be expressed as the disjoint union of two or more non-empty subcomplexes. A geometric complex is \textbf{path-connected} if there exists a path consisting of $1$-simplices connecting any vertex to any other vertex.
@@ -178,42 +171,42 @@ Path-connectedness $\Longleftrightarrow$ connectedness.
 \end{lemma}
 
 \begin{proof}
-\glqq $\Longrightarrow$\grqq{}: Let us assume that $K$ is not connected. In this case, we can choose two separate subcomplexes, namely $L$ and $M$, which do not share any common elements, but when combined, they form the entire complex $L \cap M = K$. Now, let's suppose that there exists a path between a vertex $l_0$ in $L$ and a vertex $m_0$ in $M$. However, if we consider the last vertex $l_i$ in this path that belongs to $L$, we observe that the $1$-simplex connecting $l_i$ to the next vertex in the path cannot be a part of either $L$ or $M$. If it were, then $L$ and $M$ would have a nonempty intersection, which contradicts our initial assumption that $K$ is not connected.
+\glqq $\Longrightarrow$\grqq{}: Let us assume that $K$ is not connected. In this case, we can choose two separate subcomplexes, namely $L$ and $M$, which do not share any common elements, but when combined, they form the entire complex $L \cup M = K$. Now, let's suppose that there exists a path between a vertex $l_0$ in $L$ and a vertex $m_0$ in $M$. However, if we consider the last vertex $l_i$ in this path that belongs to $L$, we observe that the $1$-simplex connecting $l_i$ to the next vertex in the path cannot be a part of either $L$ or $M$. If it were, then $L$ and $M$ would have a nonempty intersection, which contradicts our initial assumption that $K$ is not connected.
 
 \glqq $\Longleftarrow$\grqq{}: Now, let's consider the other direction. Suppose there are two points, namely $l_0$ and $m_0$, in $K$ that do not have a path connecting them. In this case, we can define $L$ as the path-connected subcomplex of $K$ that contains $l_0$, and $M$ as the path-connected subcomplex that contains $m_0$. If there exists a vertex $v_0$ in the intersection of $L$ and $M$ (i.e., $v_0 \in L \cap M \neq \emptyset$), then we can find a path from $l_0$ to $v_0$ and another path from $v_0$ to $m_0$. By concatenating these paths, we obtain a path from $l_0$ to $m_0$, which contradicts our initial assumption that there is no path between $l_0$ and $m_0$. Therefore, we conclude that $L$ and $M$ must have an empty intersection ($L\cap M= \emptyset$), indicating that $K$ is not connected.
 \end{proof}
 
 \begin{theorem}
 \label{decomptheorem}
-Let $K_1, \ldots, K_p$ be the collection of all connected components of a complex $K$. Furthermore, let $H_{d_i}$ represent the $d$th homology group of $K_i$, and $H_d$ denote the $d$th homology group of $K$. In this context, we can establish that $H_d$ is isomorphic to the direct sum $H_{d_1} \oplus \cdots \oplus H_{d_p}$.
+Let $K_1, \ldots, K_p$ be the collection of all connected components of a complex $K$. Furthermore, let $H^\Delta_{d_i}$ represent the $d$th simplicial homology group of $K_i$, and $H^\Delta_d$ denote the $d$th simplicial homology group of $K$. In this context, we can establish that $H^\Delta_d$ is isomorphic to the direct sum $H^\Delta_{d_1} \oplus \cdots \oplus H^\Delta_{d_p}$.
 \end{theorem}
 
 \begin{proof}
-Let $L_d$ represent the group of $d$-chains of $K$, and $K_i$ denote the $i$th component of $K$. We can define $L_{d_i}$ as the group of $d$-chains of $K_i$. It is evident that $L_{d_i}$ is a subgroup of $L_d$. Furthermore, we observe that $L_d$ can be expressed as the direct sum of $L_{d_1}, \ldots, L_{d_p}$:
+Let $L^\Delta_d$ represent the group of simplicial $d$-chains of $K$, and $K_i$ denote the $i$th component of $K$. We can define $L^\Delta_{d_i}$ as the group of simplicial $d$-chains of $K_i$. It is evident that $L^\Delta_{d_i}$ is a subgroup of $L^\Delta_d$. Furthermore, we observe that $L^\Delta_d$ can be expressed as the direct sum of $L^\Delta_{d_1}, \ldots, L^\Delta_{d_p}$:
 \begin{equation}
-L_d = L_{d_1} \oplus \cdots \oplus L_{d_p}.
+L^\Delta_d = L^\Delta_{d_1} \oplus \cdots \oplus L^\Delta_{d_p}.
 \end{equation}
-Our goal is to demonstrate that a similar decomposition can be applied to the groups $B_d$ and $Z_d$. By considering $B_{d_i}$ as the image of $\partial$ restricted to the subgroup $L_{d_i}$, we can represent the group $B_d$ as the direct sum of these restrictions:
+Our goal is to demonstrate that a similar decomposition can be applied to the groups $B^\Delta_d$ and $Z^\Delta_d$. By considering $B^\Delta_{d_i}$ as the image of $\partial_{d+1}$ restricted to the subgroup $L^\Delta_{d_i}$, we can represent the group $B^\Delta_d$ as the direct sum of these restrictions:
 \begin{equation}
-B_d = B_{d_1} \oplus \cdots \oplus B_{d_p}.
+B^\Delta_d = B^\Delta_{d_1} \oplus \cdots \oplus B^\Delta_{d_p}.
 \end{equation}
-Thus, for any element $c \in L_{d+1}$, which can be represented as:
+Thus, for any element $c \in L^\Delta_{d+1}$, which can be represented as:
 \begin{align}
-c = c_1 + \cdots + c_p, \quad \partial(c) = \partial c_1 + \cdots + \partial c_p \in B_d,
+c = c_1 + \cdots + c_p, \quad \partial_{d+1}(c) = \partial_{d+1}(c_1) + \cdots + \partial_{d+1}(c_p) \in B^\Delta_d,
 \end{align}
-where $c_i \in L_{{(d+1)}_i}$.
-Let us define $Z_{d_i}$ as the intersection of the kernel of $\partial$ and $L_{d_i}$. It follows that $Z_d$ can be expressed as the direct sum of $Z_{d_1}, \ldots, Z_{d_p}$:
+where $c_i \in L^\Delta_{{(d+1)}_i}$.
+Let us define $Z^\Delta_{d_i}$ as the intersection of the kernel of $\partial_{d}$ and $L^\Delta_{d_i}$. It follows that $Z^\Delta_d$ can be expressed as the direct sum of $Z^\Delta_{d_1}, \ldots, Z^\Delta_{d_p}$:
 \begin{equation}
-Z_d = Z_{d_1} \oplus \cdots \oplus Z_{d_p}.
+Z^\Delta_d = Z^\Delta_{d_1} \oplus \cdots \oplus Z^\Delta_{d_p}.
 \end{equation}
-To verify this, we observe that for an element $c \in L_d$ to belong to $Z_d$, we require $\partial(c) = 0$. However, we can express $\partial(c)$ as $\partial(c_1) + \cdots + \partial(c_p)$. Therefore, for $\partial(c) = 0$ to hold, it implies that $\partial(c_i) = 0$, indicating that $c_i \in Z_{d_i}$.
-Since both $Z_d$ and $B_d$ can be decomposed componentwise, we can conclude that:
+To verify this, we observe that for an element $c \in L^\Delta_d$ to belong to $Z^\Delta_d$, we require $\partial_{d}(c) = 0$. However, we can express $\partial_{d}(c)$ as $\partial_{d}(c_1) + \cdots + \partial_{d}(c_p)$. Therefore, for $\partial_{d}(c) = 0$ to hold, it implies that $\partial_{d}(c_i) = 0$, indicating that $c_i \in Z^\Delta_{d_i}$.
+Since both $Z^\Delta_d$ and $B^\Delta_d$ can be decomposed componentwise, we can conclude that:
 \begin{equation}
-Z_d / B_d = Z_{d_1} / B_{d_1} \oplus \cdots \oplus Z_{d_p} / B_{d_p},
+Z^\Delta_d / B^\Delta_d = Z^\Delta_{d_1} / B^\Delta_{d_1} \oplus \cdots \oplus Z^\Delta_{d_p} / B^\Delta_{d_p},
 \end{equation}
 and consequently:
 \begin{equation}
-H_d = H_{d_1} \oplus \cdots \oplus H_{d_p}.
+H^\Delta_d = H^\Delta_{d_1} \oplus \cdots \oplus H^\Delta_{d_p}.
 \end{equation}
 \end{proof}
 
@@ -231,7 +224,7 @@ We begin by proving that $c \sim 0 \implies I(c) = 0$. Let $\sigma^{(1)} = (v_0,
 
 To prove the forward direction, $I(x) = 0 \implies c \sim 0$, we consider two vertices $v$ and $w$ of $K$. Since $K$ is connected, there exists a path between $v$ and $w$ consisting of $1$-simplices $\sigma_i^{(1)} = (v_i,v_{i+1})$, $i=1,\ldots,k-1$, where $v_0 = v$ and $v_k = w$. We consider the boundary of the chain $c = \sum_{i=1}^{k} g \sigma_i^{(1)}$, given by $\partial(c) = \sum_{i=1}^{k}g \partial(\sigma_i^{(1)}) = \sum_{i=1}^{k}g [(v_{i+1}) - (v_i))] = gw - gv$. The index of the chain $c = \sum_{i=1}^{k} g_i \sigma_i^{(n)}$ is defined as $I(c) = \sum_{i=1}^{k} g_i$. Since $\partial(c)$ is a boundary, we have $c = \partial(c) \sim 0$. This implies that $(gw-gv) \sim 0$, which further implies $gw \sim gv$. Therefore, any $0$-chain $c$ in $K$ is homologous to the chain $gv$. We observe that homologous chains have equal indices, i.e., $I(c) = I(gv) = g$. Thus, we have $c \sim gv \implies c \sim I(c)v$. This shows that if $I(c) = 0$, then $c \sim 0$. Hence, $I(c) = 0$ is equivalent to $c \sim 0$.
 
-As mentioned, $I$ is a homomorphism from $L_0 = Z_0$ to $\mathbb{Z}$. For a $0$-simplex $c$ and $g \in \mathbb{Z}$, the chain $gc \in L_0$ is a cycle with $I(gc) = g$. Therefore, $I(Z_0) = \mathbb{Z}$. Since $I(c) = 0$ is equivalent to $c \sim 0$, we have $B_0 = \ker(I)$. This implies that $H^\Delta_0 = Z_0/B_0 \cong \mathbb{Z}$.
+As mentioned, $I$ is a homomorphism from $L^\Delta_0 = Z^\Delta_0$ to $\mathbb{Z}$. For a $0$-simplex $c$ and $g \in \mathbb{Z}$, the chain $gc \in L^\Delta_0$ is a cycle with $I(gc) = g$. Therefore, $I(Z^\Delta_0) = \mathbb{Z}$. Since $I(c) = 0$ is equivalent to $c \sim 0$, we have $B^\Delta_0 = \ker(I)$. This implies that $H^\Delta_0 = Z^\Delta_0/B^\Delta_0 \cong \mathbb{Z}$.
 \end{proof}
 
 At this point, we can deduce the following corollary from Theorem \ref{pathconnect} and Proposition \ref{decomposition}:
@@ -475,14 +468,14 @@ The relative homology groups $H_d(X,A)$ are part of the exact sequence:
 \begin{proof}
 Consider the following diagram:
 \begin{equation}
-\begin{tikzcd}[row sep=1em]
+\begin{tikzcd}
 0 \arrow[r] & C_d(A) \arrow[r, "i", hook] \arrow[d, "\partial"] & C_d(X) \arrow[r, "j", two heads] \arrow[d, "\partial"] & {C_d(X,A)} \arrow[r] \arrow[d, "\partial"] & 0 \\
 0 \arrow[r] & C_{d-1}(A) \arrow[r, "i", hook]                               & C_{d-1}(X) \arrow[r, "j", two heads]                               & {C_{d-1}(X,A)} \arrow[r]                               & 0.
 \end{tikzcd}
 \end{equation}
 $i$ is the inclusion $C_d(A) \hookrightarrow C_d(X)$ and $j$ is the quotient map $C_d(X) \twoheadrightarrow C_d(X,A)$. This diagram is commuting, and turning it by $90$ degrees yields the following diagram for abelian groups $A_i, B_i$ and $C_i$:
 \begin{equation}
-\begin{tikzcd}[row sep=1em]
+\begin{tikzcd}
                  & 0 \arrow[d]                                                         & 0 \arrow[d]                                                     & 0 \arrow[d]                                                         &        \\
 \cdots \arrow[r] & A_{d+1} \arrow[r, "\partial"] \arrow[d, "i", hook]      & A_d \arrow[r, "\partial"] \arrow[d, "i", hook]      & A_{n-1} \arrow[r, "\partial"] \arrow[d, "i", hook]      & \cdots \\
 \cdots \arrow[r] & B_{d+1} \arrow[r, "\partial"] \arrow[d, "j", two heads] & B_d \arrow[r, "\partial"] \arrow[d, "j", two heads] & B_{d-1} \arrow[r, "\partial"] \arrow[d, "j", two heads] & \cdots \\
