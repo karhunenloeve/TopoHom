@@ -1,4 +1,4 @@
-# An Introduction to Simplicial Homology
+# Notes on Simplicial and Singular Homology
 This paper explores the foundational concepts of simplicial structures that form the basis of simplicial homology theory. It also introduces singular homology as a means to establish the equivalence of homology groups for homeomorphic topological spaces. The paper concludes by providing a proof of the equivalence between simplicial and singular homology groups.
 
 We follow the structure and explanations provided by Nadathur [7] and Hatcher [3]. In particular, the definitions are taken from Boissonnat et al. [1], as well as from Jonsson's introduction [4] and the paper on computational topology by Melodia et al. [6]. Some individual lemmas and proof ideas are drawn from Khoury [5] or from the textbook by Edelsbrunner et al. [2], but they have been adapted, expanded, and implemented independently. To enhance readability, we have omitted source citations within the text.

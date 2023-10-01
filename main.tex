@@ -30,11 +30,12 @@
 \newcommand{\QQ}{\mathbb{Q}}
 \newcommand{\CC}{\mathbb{C}}
 
-\title{An Introduction to Simplicial Homology}
+\title{Notes on Simplicial and Singular Homology}
 
 \author[Luciano Melodia]{Luciano Melodia}
-\address{Friedrich-Alexander Universität Erlangen-Nürnberg \\ Cauerstraße 11, 91058 Erlangen}
+\address{Department of Mathematics \\ Friedrich-Alexander Universität Erlangen-Nürnberg \\ Cauerstraße 11, 91058 Erlangen}
 \email{luciano.melodia@fau.de}
+\subjclass[2020]{55N10, 55N99}
 \date{\today}
 
 \begin{document}
@@ -557,6 +558,25 @@ We aim to establish the equivalence between the groups $H_d(X)$ and $H^\Delta_d(
 
 To demonstrate the equivalence of $H_d(X)$ and $H^\Delta_d(X)$, we need to establish the existence of an isomorphism between the two groups for all $d$. It is relatively straightforward to observe the existence of a homomorphism: we already have a map $L_d(X) \rightarrow C_d(X)$ from the simplicial chain group to the singular chain group, which maps each simplex of $X$ to $\tilde{\sigma}^{(d)}: \sigma^{(d)} \rightarrow X$. This map induces a corresponding map $H^\Delta_d(X) \rightarrow H_d(X)$.
 
+\begin{lemma}
+In a commutative diagram structured as follows:
+\begin{equation}
+\begin{tikzcd}
+A \arrow[r, "i"] \arrow[d, "\alpha" description] & B \arrow[r, "j"] \arrow[d, "\beta" description] & C \arrow[r, "k"] \arrow[d, "\gamma" description] & D \arrow[r, "l"] \arrow[d, "\delta" description] & E \arrow[d, "\epsilon" description] \\
+A' \arrow[r, "i'"]                               & B' \arrow[r, "j'"]                              & C' \arrow[r, "k'"]                               & D' \arrow[r, "l'"]                               & E'.                                 
+\end{tikzcd}
+\end{equation}
+If the morphisms $\alpha, \beta, \delta, \epsilon$ are all isomorphisms, and both rows in the diagram are exact, then it follows that $\gamma$ is also an isomorphism.
+\end{lemma}
+
+\begin{proof}
+The commutativity of the diagram implies that $\gamma$ is a homomorphism. To establish that $\gamma$ is bijective, we proceed as follows:
+\begin{itemize}
+    \item Surjectivity of $\gamma$: Let $c' \in C'$. Since $\delta$ is surjective, there exists some $d \in D$ such that $k'(c') = \delta(d)$. Injectivity of $\epsilon$ implies $\epsilon \circ l(d) = l' \circ \delta(d) = l' \circ k'(c') = 0$. Therefore, $l(d) = 0$. Since the rows are exact, we have $d = k(c)$ for some $c \in C$. This leads to $k'(c') - k'(\gamma(c)) = k'(c') - \delta \circ k(c) = k'(c') - \delta(d) = 0$. Hence, $k'(c' - \gamma(c)) = 0$, and by exactness, $c' - \gamma(c) = j'(b')$ for some $b' \in B'$. The surjectivity of $\beta$ implies that $b' = \beta(b)$ for some $b \in B$. Consequently, $\gamma(c + j(b)) = \gamma(c) + \gamma(j(b)) = \gamma(c) + j' \circ \beta(b) = \gamma(c) - j'(b') = c'$, establishing the surjectivity of $\gamma$.
+    \item Injectivity of $\gamma$: Suppose $\gamma(c) = 0$. Since $\delta$ is injective, we have $\delta(k(c)) = k'(\gamma(c)) = 0$. This implies $k(c) = 0$. Therefore, $c = j(b)$ for some $b \in B$. From $\gamma(c) = \gamma(j(b)) = j'(\beta(b))$, we deduce that $\beta(b) = i'(a')$ for some $a' \in A'$. Surjectivity of $\alpha$ gives us $a' = \alpha(a)$ for some $a \in A$. As $\beta$ is injective, we find that $\beta(i(a) - b) = \beta(i(a)) - \beta(b) = i'(\alpha(a)) - \beta(b) = i'(a') - \beta(b) = 0$. Therefore, $i(a) - b = 0$, which implies $b = i(a)$. Consequently, $c = j(b) = j(i(a)) = 0$ by the exactness of rows. Hence, $\gamma$ has a trivial kernel and is thus injective.
+\end{itemize}
+In summary, we have shown that $\gamma$ is both surjective and injective, which establishes its bijectiveness.
+\end{proof}
 
 \begin{thebibliography}{100}
 \bibitem{1} Boissonnat, J. D., Chazal, F., Yvinec, M. (2018). Geometric and Topological Inference (Vol. 57). Cambridge University Press.
