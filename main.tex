@@ -1,22 +1,20 @@
-\documentclass{article}
+\documentclass{amsart}
+\usepackage{amsaddr}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage{amsthm,amssymb,amsmath}
-\usepackage{titlesec}
-\usepackage{setspace}
+\usepackage[indentafter]{titlesec}
+\titleformat{name=\section}{}{\thetitle.}{0.8em}{\centering\scshape}
+\titleformat{name=\subsection}[runin]{}{\thetitle.}{0.5em}{\bfseries}[.]
+\titleformat{name=\subsubsection}[runin]{}{\thetitle.}{0.5em}{\itshape}[.]
+\titleformat{name=\paragraph,numberless}[runin]{}{}{0em}{}[.]
+\titlespacing{\paragraph}{0em}{0em}{0.5em}
+\titleformat{name=\subparagraph,numberless}[runin]{}{}{0em}{}[.]
+\titlespacing{\subparagraph}{0em}{0em}{0.5em}
+\usepackage{tocloft}
 \usepackage{tikz-cd}
 \usepackage{url}
-\usepackage{authblk}
-\usepackage{geometry}
-\geometry{
-  verbose,
-  papersize={155mm,235mm},
-  textwidth=117mm,
-  textheight=191mm,
-  heightrounded, % <- I recommend this
-  hratio=1:1,
-  vratio=1:1,
-}
+\usepackage{euler}
 
 \usepackage[backend=biber]{biblatex}
 \newtheorem{theorem}[section]{Theorem}
@@ -33,22 +31,21 @@
 \newcommand{\CC}{\mathbb{C}}
 
 \title{An Introduction to Simplicial Homology Theory}
-\author{Luciano Melodia}
-\affil{Friedrich-Alexander Universität Erlangen-Nürnberg}
+
+\author[Luciano Melodia]{Luciano Melodia}
+\address{Friedrich-Alexander Universität Erlangen-Nürnberg \\ Cauerstraße 11, 91058 Erlangen}
+\email{luciano.melodia@fau.de}
 \date{\today}
 
 \begin{document}
-
+\makeatletter
+\makeatother
 \maketitle
 \begin{abstract}
 This paper explores the foundational concepts of simplicial structures that form the basis of simplicial homology theory. It also introduces singular homology as a means to establish the equivalence of homology groups for homeomorphic topological spaces. The paper concludes by providing a proof of the equivalence between simplicial and singular homology groups.
 
 We follow the structure and explanations provided by Nadathur [7] and Hatcher [3]. In particular, the definitions are taken from Boissonnat et al. [1], as well as from Jonsson's introduction [4] and the paper on computational topology by Melodia et al. [6]. Some individual lemmas and proof ideas are drawn from Khoury [5] or from the textbook by Edelsbrunner et al. [2], but they have been adapted, expanded, and implemented independently. To enhance readability, we have omitted source citations within the text.
 \end{abstract}
-
-\begin{spacing}{-1}
-\tableofcontents
-\end{spacing} 
 
 \section{Simplicial Complexes}
 We would like to emphasize that a collection of points $X = \{x_0, x_1, \ldots, x_d\}$ in $\mathbb{R}^n$ is considered to be \emph{affinely independent} if these points do not lie within any affine subspace of dimension lower than $d$.
@@ -111,7 +108,7 @@ c := g_1 \sigma^{(d)}_1 + g_2 \sigma^{(d)}_2 + \ldots + g_k \sigma^{(d)}_k = \su
 The set of simplicial $d$-chains $L^\Delta_d$ is an abelian group $(L^\Delta_d,+)$.
 \end{lemma}
 \begin{proof}
-The identity element of the group is represented by the empty chain $\sum_{i=1}^{k} e_G \sigma^{d}_i = e_G$. The sum of two chains is defined as $c+c' = \sum_{i=1}^{k} g_i \sigma_i^{(d)} + \sum_{j=1}^{l} g'_j \sigma_j^{(d)} = \sum_{i=1}^{k} (g_i+g_i') \sigma_i^{(d)} + \sum_{j=k}^{l} g'_j \sigma_j^{(d)}$ if $k \leq l$ and $c+c' = \sum_{i=1}^{k} g_i \sigma_i^{(d)} + \sum_{j=1}^{l} g'_j \sigma_j^{(d)} = \sum_{i=1}^{l} (g_i+g_i') \sigma_i^{(d)} + \sum_{j=l}^{k} g_j \sigma_j^{(d)}$ if $k > l$, thus, we can conclude that $c+c' \in L^\Delta_d$. The associativity of the group operation in $L^\Delta_d$ follows directly from the associativity of the group operation in $G$. The inverse element is defined by $e_{L^\Delta_d} = c + (-c) = \sum_{i=1}^{k} g_i \sigma_i^{(d)} - \sum_{i=1}^{k} (-g_i) \sigma_i^{(d)} = \sum_{i=1}^{k} (g_i-g_i) \sigma_i^{(d)}$ with $c,-c \in L^\Delta_d$.
+The identity element of the group is represented by the empty chain $\sum_{i=1}^{k}$ $e_G \sigma^{d}_i$ $= e_G$. The sum of two chains is defined as $c+c' = \sum_{i=1}^{k} g_i \sigma_i^{(d)}$ $+ \sum_{j=1}^{l} g'_j \sigma_j^{(d)}$ $=$ $\sum_{i=1}^{k} (g_i+g_i') \sigma_i^{(d)}$ $+$ $\sum_{j=k}^{l} g'_j \sigma_j^{(d)}$ if $k \leq l$ and $c+c' = \sum_{i=1}^{k} g_i \sigma_i^{(d)} + \sum_{j=1}^{l} g'_j \sigma_j^{(d)} = \sum_{i=1}^{l} (g_i+g_i') \sigma_i^{(d)} + \sum_{j=l}^{k} g_j \sigma_j^{(d)}$ if $k > l$, thus, we can conclude that $c+c' \in L^\Delta_d$. The associativity of the group operation in $L^\Delta_d$ follows directly from the associativity of the group operation in $G$. The inverse element is defined by $e_{L^\Delta_d} = c + (-c) = \sum_{i=1}^{k} g_i \sigma_i^{(d)} - \sum_{i=1}^{k} (-g_i) \sigma_i^{(d)} = \sum_{i=1}^{k} (g_i-g_i) \sigma_i^{(d)}$ with $c,-c \in L^\Delta_d$.
 \end{proof}
 
 \begin{definition}
@@ -122,7 +119,7 @@ Let $\sigma^{(d)}$ be an oriented $d$-simplex in a complex $K$. The $\textbf{bou
 where $\sigma^{(d-1)}_i$ is an $(d-1)$-face of $\sigma^{(d)}$. If $d=0$, we define $\partial(\sigma^{(0)}) = e_G = 0$.
 \end{definition}
 
-Since $\sigma^{(d)}$ is an oriented simplex, the $\sigma^{(d-1)}_i$-faces also have associated orientations. We can extend the definition of the boundary linearly to all elements of $L^\Delta_d$.
+Since $\sigma^{(d)}$ is an oriented simplex, the $\sigma^{(d-1)}_i$-faces also have associated orientations. We can extend the definition of the boundary linearly to elements of $L^\Delta_d$.
 
 \begin{lemma}
 The \textbf{boundary operator} is a group homomorphism $\partial: L^\Delta_d \rightarrow L^\Delta_{d-1}$.
@@ -131,7 +128,6 @@ The \textbf{boundary operator} is a group homomorphism $\partial: L^\Delta_d \ri
 We define the boundary operator for a $d$-chain $c = \sum_{i=1}^{k} g_i \sigma_i^{(d)}$ as follows: $\partial(c) = \sum_{i=1}^{k} g_i \partial(\sigma_i^{(d)}) = \sum_{i=1}^{k} g_i \sum_{j=1}^{d} \sigma_j^{(d-1)} = \sum_{i=1}^{k} \sum_{j=1}^{d} g_i \sigma_j^{(d-1)} \in L^\Delta_{d-1}$, where $\sigma_i^{(d)}$ are the $d$-simplices of $K$. We can compute this by
 \begin{align}
 \partial(c + c') &= \partial(\sum_{i=1}^{k} g_i \sigma_i^{(d)} + \sum_{j=1}^{l} g'_j \sigma_j^{(d)}) \\
-&= \partial\left(\sum_{i=1}^{k} g_i \sigma_i^{(d)}\right) + \partial\left(\sum_{j=1}^{l} g'_j \sigma_j^{(d)}\right) \\
 &= \sum_{i=1}^{k} g_i \partial(\sigma_i^{(d)}) + \sum_{j=1}^{l} g'_j \partial(\sigma_j^{(d)}) \\
 &= \partial(c) + \partial(c').
 \end{align}
