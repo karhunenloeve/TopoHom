@@ -547,10 +547,19 @@ is said to be exact.
 The conclusion follows from the previous Proposition \ref{exacthomsequence}, with the additional observation that for a relative cycle $c$ in $H_d(X,A)$, the application of $\partial([c])$ results in the class of the cycle $[\partial(c)]$ in $H_{d-1}(A)$.
 \end{proof}
 
+Additionally, we make reference to the Excision Theorem, a well-established result within this field. While the theorem's statement appears straightforward and intuitively sound, its actual proof can be rather intricate. Therefore, we present the theorem without delving into the proof details here.
+
+In simpler terms, the Excision Theorem enables us to investigate the homology of a space by effectively \glqq cutting out\grqq{} a smaller subspace, provided certain conditions regarding the relationship between these subspaces are satisfied. In essence, this theorem assures us that, under the specified conditions, the homology of the original space remains unchanged when compared to the homology of the space resulting from the removal of the smaller subspace.
+
+\begin{theorem}
+Given $Y \subset A \subset X$, with the closure of $Y$ contained in the interior of $A$, then $(X\setminus Y, A \setminus Y) \hookrightarrow (X,A)$ induces isomorphisms $H_d(X\setminus Y, A\setminus Y) \rightarrow H_d(X,A)$ for all $d$.
+\end{theorem}
+
 \section{Equivalence of Simplicial Homology Group $H_d^\Delta$ and Singular Homology Group $H_d$}
 We aim to establish the equivalence between the groups $H_d(X)$ and $H^\Delta_d(X)$. It is important to note that simplicial homology groups are defined and computable only for simplicial structures. However, this limitation can be overcome by calculating singular homology groups for any topological space, including simplicial complexes. Furthermore, the fact that homeomorphic spaces have isomorphic singular homology groups suggests that we can impose a simplicial structure on a topological space. Therefore, to prove the equivalence of $H_d(X)$ and $H^\Delta_d(X)$, we consider an arbitrary simplicial complex as our topological space $X$. It is worth mentioning that not all topological spaces can be homeomorphic to a simplicial complex, but for the purpose of this paper, we will focus solely on spaces that can be represented as simplicial complexes.
 
 To demonstrate the equivalence of $H_d(X)$ and $H^\Delta_d(X)$, we need to establish the existence of an isomorphism between the two groups for all $d$. It is relatively straightforward to observe the existence of a homomorphism: we already have a map $L_d(X) \rightarrow C_d(X)$ from the simplicial chain group to the singular chain group, which maps each simplex of $X$ to $\tilde{\sigma}^{(d)}: \sigma^{(d)} \rightarrow X$. This map induces a corresponding map $H^\Delta_d(X) \rightarrow H_d(X)$.
+
 
 \begin{thebibliography}{100}
 \bibitem{1} Boissonnat, J. D., Chazal, F., Yvinec, M. (2018). Geometric and Topological Inference (Vol. 57). Cambridge University Press.
