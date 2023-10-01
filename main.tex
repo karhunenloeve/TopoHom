@@ -549,7 +549,8 @@ Additionally, we make reference to the Excision Theorem, a well-established resu
 
 In simpler terms, the Excision Theorem enables us to investigate the homology of a space by effectively \glqq cutting out\grqq{} a smaller subspace, provided certain conditions regarding the relationship between these subspaces are satisfied. In essence, this theorem assures us that, under the specified conditions, the homology of the original space remains unchanged when compared to the homology of the space resulting from the removal of the smaller subspace.
 
-\begin{theorem}
+\begin{theorem}{(The Excision Theorem)}
+\label{excisiontheorem}
 Given $Y \subset A \subset X$, with the closure of $Y$ contained in the interior of $A$, then $(X\setminus Y, A \setminus Y) \hookrightarrow (X,A)$ induces isomorphisms $H_d(X\setminus Y, A\setminus Y) \rightarrow H_d(X,A)$ for all $d$.
 \end{theorem}
 
@@ -558,7 +559,8 @@ We aim to establish the equivalence between the groups $H_d(X)$ and $H^\Delta_d(
 
 To demonstrate the equivalence of $H_d(X)$ and $H^\Delta_d(X)$, we need to establish the existence of an isomorphism between the two groups for all $d$. It is relatively straightforward to observe the existence of a homomorphism: we already have a map $L_d(X) \rightarrow C_d(X)$ from the simplicial chain group to the singular chain group, which maps each simplex of $X$ to $\tilde{\sigma}^{(d)}: \sigma^{(d)} \rightarrow X$. This map induces a corresponding map $H^\Delta_d(X) \rightarrow H_d(X)$.
 
-\begin{lemma}
+\begin{lemma}{(The Five Lemma)}
+\label{fivelemma}
 In a commutative diagram structured as follows:
 \begin{equation}
 \begin{tikzcd}
@@ -576,6 +578,43 @@ The commutativity of the diagram implies that $\gamma$ is a homomorphism. To est
     \item Injectivity of $\gamma$: Suppose $\gamma(c) = 0$. Since $\delta$ is injective, we have $\delta(k(c)) = k'(\gamma(c)) = 0$. This implies $k(c) = 0$. Therefore, $c = j(b)$ for some $b \in B$. From $\gamma(c) = \gamma(j(b)) = j'(\beta(b))$, we deduce that $\beta(b) = i'(a')$ for some $a' \in A'$. Surjectivity of $\alpha$ gives us $a' = \alpha(a)$ for some $a \in A$. As $\beta$ is injective, we find that $\beta(i(a) - b) = \beta(i(a)) - \beta(b) = i'(\alpha(a)) - \beta(b) = i'(a') - \beta(b) = 0$. Therefore, $i(a) - b = 0$, which implies $b = i(a)$. Consequently, $c = j(b) = j(i(a)) = 0$ by the exactness of rows. Hence, $\gamma$ has a trivial kernel and is thus injective.
 \end{itemize}
 In summary, we have shown that $\gamma$ is both surjective and injective, which establishes its bijectiveness.
+\end{proof}
+
+Simplicial and singular homology, although stemming from similar concepts, have distinct purposes in algebraic topology. They excel in different scenarios: Simplicial homology simplifies homology group calculations, particularly suited for geometric problems, while singular homology is advantageous when streamlined theorem proofs are needed, thanks to its compatibility with continuous maps.
+
+The fundamental achievement in algebraic topology lies in their equivalence. This unification not only bridges the gap between the two approaches but also equips mathematicians with a versatile tool for addressing a wide range of problems. It stands as a pivotal result in the field, empowering researchers to tackle diverse challenges effectively.
+
+\begin{theorem}{(Equivalence of Simplicial and Singular Homology)}
+For all values of $d$, the homomorphisms from the simplicial homology group $H^\Delta_d(X)$ to the singular homology group $H_d(X)$ are isomorphisms. Therefore, it follows that the singular and simplicial homology groups are equivalent.
+\end{theorem}
+
+\begin{proof}
+Consider a simplicial complex $X$. For the $k$-skeleton $X^k$ of $X$, we obtain the following commutative diagram of exact sequences due to the inclusion $X^{k-1} \subset X^k$:
+\begin{equation*}
+\begin{tikzcd}[column sep=1.2em]
+{H^\Delta_{d+1}(X^k,X^{k-1})} \arrow[d] \arrow[r] & H^\Delta_{d}(X^{k-1}) \arrow[d] \arrow[r] & H^\Delta_{d}(X^k) \arrow[d] \arrow[r] & {H^\Delta_{d}(X^k,X^{k-1})} \arrow[d] \arrow[r] & H^\Delta_{d-1}(X^{k-1}) \arrow[d] \\
+{H_{d+1}(X^k,X^{k-1})} \arrow[r]                  & H_{d}(X^{k-1}) \arrow[r]                  & H_{d}(X^k) \arrow[r]                  & {H_{d}(X^k,X^{k-1})} \arrow[r]                  & H_{d-1}(X^{k-1})                 
+\end{tikzcd}
+\end{equation*}
+Here, $X^k/X^{k-1}$ contains only simplices of dimension $k$, so for $d \neq k$, the group $L_d(X^k, X^{k-1})$ is trivial. When $d = k$, $L_d(X^k, X^{k-1})$ is a free abelian group with a basis consisting of the $k$-simplices of $X$. Since the cycles $Z_d$ form a subgroup of $L_d$, and the boundary group $B_d$ is empty, $H^\Delta_d(X^k, X^{k-1})$ is essentially the same as $L_d$, with the distinction that when $d = k$, the basis of $Z_d$ consists of $k$-cycles.
+
+We notice that the characteristic maps $\sigma^{(k)} \rightarrow X$ for all the $k$-simplices of $X$ provide us with a map $\Phi: \coprod_i(\sigma^{(k)}_i, \sigma^{(k-1)}i) \rightarrow (X^k, X^{k-1})$. It is evident that this map induces a homeomorphism $\Phi\star: \coprod_i \sigma^{(k)}_i/\coprod_i \sigma^{(k-1)}_i \rightarrow X^k/X^{k-1}$. As a result, we have $H_d(\coprod_i (\sigma^{(k)}_i, \sigma^{(k-1)}_i)) \cong H_d(X^k, X^{k-1})$.
+
+Utilizing the Excision Theorem \ref{excisiontheorem}, which allows us to replace a subspace with its complement while preserving homology, we can conclude that there exists an isomorphism $H_d(X,A) \rightarrow H_d(X/A)$ for all good pairs $(X,A)$. Consequently, we have $H_d(\coprod_i (\sigma^{(k)}_i, \sigma^{(k-1)}_i)) \cong H_d(X^k, X^{k-1}) \cong H_d(X^k/X^{k-1})$. Through transitivity, this establishes $H_d(\coprod_i (\sigma^{(k)}_i, \sigma^{(k-1)}_i)) \cong H_d(X^k/X^{k-1})$. This result shows that $H_d(X^k, X^{k-1})$ is trivial for $d \neq k$ and is a free abelian group with the basis being the relative cycles defined by the maps $\sigma^{(k)} \rightarrow X$.
+
+To complete the argument, we use induction and assume that the second and fifth parts of the homology long exact sequence are isomorphisms for dimensions less than $k$. In other words, we assume that:
+\begin{itemize}
+	\item $H_{d+1}^\Delta(X^{k-1}, X^{k-2}) \cong H_{d+1}(X^{k-1}, X^{k-2})$ for $d \leq k-2$.
+	\item $H_d^\Delta(X^{k-1}, X^{k-2}) \rightarrow H_d(X^{k-1}, X^{k-2})$ is an isomorphism for $d \leq k-1$.
+\end{itemize}
+Now, we aim to show that the map $H_d^\Delta(X^k, X^{k-1}) \rightarrow H_d(X^k, X^{k-1})$ is an isomorphism for all $d$. We already know this holds for $d \neq k$. For $d = k$, we have:
+\begin{equation}
+H_k^\Delta(X^k,X^{k-1}) \cong H_k(X^k,X^{k-1})
+\end{equation}
+This follows from the Five Lemma \ref{fivelemma} regarding the isomorphism between the relative simplicial homology group $H_k^\Delta(X^k, X^{k-1})$ and the relative homology group $H_k(X^k, X^{k-1})$. Having established the isomorphism for all $d$, we've shown that the map 
+$H_d^\Delta(X^k, X^{k-1}) \rightarrow H_d(X^k, X^{k-1})$ is indeed an isomorphism for all dimensions.
+
+In summary, by induction and the previous arguments, we've demonstrated that for all $k$, the homomorphisms $H_d^\Delta(X^k, X^{k-1}) \rightarrow H_d(X^k, X^{k-1})$ are isomorphisms, which confirms the equivalence between simplicial and singular homology.
 \end{proof}
 
 \begin{thebibliography}{100}
