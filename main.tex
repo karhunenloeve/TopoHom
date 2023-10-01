@@ -3,9 +3,10 @@
 \usepackage[english]{babel}
 \usepackage{amsthm,amssymb,amsmath}
 \usepackage{titlesec}
+\usepackage{setspace}
 \usepackage{tikz-cd}
 \usepackage{url}
-
+\usepackage{authblk}
 \usepackage{geometry}
 \geometry{
   verbose,
@@ -31,9 +32,9 @@
 \newcommand{\QQ}{\mathbb{Q}}
 \newcommand{\CC}{\mathbb{C}}
 
-\title{\textbf{An Introduction to \\ Simplicial Homology Theory} \\[0.2cm] \large From Simplicial to Singular Homology}
-
+\title{An Introduction to Simplicial Homology Theory}
 \author{Luciano Melodia}
+\affil{Friedrich-Alexander Universität Erlangen-Nürnberg}
 \date{\today}
 
 \begin{document}
@@ -41,8 +42,13 @@
 \maketitle
 \begin{abstract}
 This paper explores the foundational concepts of simplicial structures that form the basis of simplicial homology theory. It also introduces singular homology as a means to establish the equivalence of homology groups for homeomorphic topological spaces. The paper concludes by providing a proof of the equivalence between simplicial and singular homology groups.
+
+We follow the structure and explanations provided by Nadathur [7] and Hatcher [3]. In particular, the definitions are taken from Boissonnat et al. [1], as well as from Jonsson's introduction [4] and the paper on computational topology by Melodia et al. [6]. Some individual lemmas and proof ideas are drawn from Khoury [5] or from the textbook by Edelsbrunner et al. [2], but they have been adapted, expanded, and implemented independently. To enhance readability, we have omitted source citations within the text.
 \end{abstract}
+
+\begin{spacing}{-1}
 \tableofcontents
+\end{spacing} 
 
 \section{Simplicial Complexes}
 We would like to emphasize that a collection of points $X = \{x_0, x_1, \ldots, x_d\}$ in $\mathbb{R}^n$ is considered to be \emph{affinely independent} if these points do not lie within any affine subspace of dimension lower than $d$.
@@ -381,7 +387,7 @@ To formalize the relationships between the homology groups of a topological spac
 
 \begin{definition}
 An arrangement of elements in the form \begin{equation}
-\cdots \rightarrow A_{d+1} \xrightarrow{\alpha_{n+1}} A_{d} \xrightarrow{\alpha_d} \rightarrow A_{d-1} \xrightarrow{} \cdots
+\cdots \rightarrow A_{d+1} \xrightarrow{\alpha_{n+1}} A_{d} \xrightarrow{\alpha_d} A_{d-1} \xrightarrow{} \cdots
 \end{equation}
 is referred to as an \textbf{exact sequence} when the $A_i$ are abelian groups and the $\alpha_i$ are homomorphisms, and it satisfies the condition that $\ker(\alpha_d) = \text{im}(\alpha_{d+1})$ for all $d$.\end{definition}
 
@@ -414,10 +420,10 @@ We can establish the following euqivalences:
 	\item[1.] \glqq $\Rightarrow$\grqq{}: First, assume that $0 \xrightarrow{} A \xrightarrow{a} B$ is exact. This means that $\text{im}(0) = \ker(a)$, which implies that $\ker(a) = 0$ since the image of the zero map is always the trivial group. Therefore, $\ker(a) = 0$.
 
 	\glqq $\Leftarrow$\grqq{}: Conversely, suppose that $\ker(a) = 0$ or $a$ is injective. We need to show that $\text{im}(0) = \ker(a)$. Since $\ker(a) = 0$, the only element mapped to the identity element in $B$ is the zero element of $A$. This means that the image of the zero map is equal to the kernel of $a$, which implies that $0 \xrightarrow{} A \xrightarrow{a} B$ is exact.
-	\item[2.] \glqq $\Rightarrow$\grqq{}: First, assume that $A \xrightarrow{a} B \rightarrow 0$ is exact. This means that $\text{im}(a) = \ker(0)$, which implies that $\text{im}(a) = B$ since the kernel of the zero map is always the entire group. Therefore, $\text{im}(a) = B$.
+	\item[2.] \glqq $\Rightarrow$\grqq{}: First, assume that $A \xrightarrow{a} B \xrightarrow{} 0$ is exact. This means that $\text{im}(a) = \ker(0)$, which implies that $\text{im}(a) = B$ since the kernel of the zero map is always the entire group. Therefore, $\text{im}(a) = B$.
 
 	\glqq $\Leftarrow$\grqq{}: Conversely, suppose that $\text{im}(a) = B$ or $a$ is surjective. We need to show that $\text{im}(a) = \ker(0)$. Since $\text{im}(a) = B$, every element in $B$ has a preimage in $A$ under the map $a$. This means that the image of $a$ is equal to the kernel of the zero map, which implies that $A \xrightarrow{a} B \rightarrow 0$ is exact.
-	\item[3.] \glqq $\Rightarrow$\grqq{}: First, assume that $0 \xrightarrow{} A \xrightarrow{a} B \xrightarrow 0$ is exact. This means that $\text{im}(0) = \ker(a)$ and $\text{im}(a) = \ker(0)$. Since the image of the zero map is always the trivial group, we have $\ker(0) = B$. Therefore, $\text{im}(a) = B$. Since $\text{im}(a) = B$, this implies that $a$ is surjective. To show that $a$ is also injective, we need to show that $\ker(a) = 0$. From the exactness of the sequence, we have $\ker(a) = \text{im}(0) = 0$. Therefore, $a$ is injective. Since $a$ is both surjective and injective, it is an isomorphism.
+	\item[3.] \glqq $\Rightarrow$\grqq{}: First, assume that $0 \xrightarrow{} A \xrightarrow{a} B \xrightarrow{} 0$ is exact. This means that $\text{im}(0) = \ker(a)$ and $\text{im}(a) = \ker(0)$. Since the image of the zero map is always the trivial group, we have $\ker(0) = B$. Therefore, $\text{im}(a) = B$. Since $\text{im}(a) = B$, this implies that $a$ is surjective. To show that $a$ is also injective, we need to show that $\ker(a) = 0$. From the exactness of the sequence, we have $\ker(a) = \text{im}(0) = 0$. Therefore, $a$ is injective. Since $a$ is both surjective and injective, it is an isomorphism.
 
 	\glqq $\Leftarrow$\grqq{}: Conversely, suppose that $a$ is an isomorphism. This means that $a$ is both surjective and injective. Since $a$ is surjective, we have $\text{im}(a) = B$. Since $a$ is injective, we have $\ker(a) = 0$. From the exactness of the sequence, we have $\text{im}(a) = \ker(0)$. Since the kernel of the zero map is always the entire group, we have $\ker(0) = B$. Therefore, $\text{im}(a) = B$.
 	\item \glqq $\Rightarrow$\grqq{}: First, assume that the sequence is exact. This means that $a$ is injective, $\text{im}(a) = \ker(b)$, and $b$ is surjective. Since $b$ is a map from $B$ to $0$, the only possible value for $\text{im}(b)$ is the zero element. Therefore, $\text{im}(b) = 0$. Since $\text{im}(a) = \ker(b)$, we have $\ker(b) = 0$. This implies that $b$ is the zero map, and since $b$ is surjective, the only possible value for $B$ is the zero element. Therefore, $B = 0$. Since $a$ is injective and $B = 0$, the only possible value for $A$ is also the zero element of $0$. Therefore, $A = 0$. We have shown that $A = 0$, $B = 0$, and $a$ is injective. This implies that $a$ is an isomorphism.
@@ -427,7 +433,124 @@ We can establish the following euqivalences:
 \end{proof}
 
 \section{Relative Homology Groups}
-\section{Equivalence of Simplicial Homology Group $H_d^\Delta$ \\ and Singular Homology Group $H_d$}
+The concept we will now discuss is that of \emph{relative homology groups}. Let $X$ be a topological space and $A$ be a subspace of $X$. We define $C_d(X,A)$ as the quotient group $C_d(X)/C_d(A)$. This means that chains in $A$ are considered equivalent to the trivial chains in $C_d(X)$.
+
+Since the boundary operator $\partial: C_d(X) \rightarrow C_{d-1}(X)$ also maps $C_d(A)$ to $C_{d-1}(A)$, we obtain a natural boundary map on the quotient group $\partial: C_d(X,A) \rightarrow C_{d-1}(X,A)$. This gives rise to the following sequence:
+
+\begin{equation}
+\cdots \xrightarrow{} C_{d+1}(X,A) \xrightarrow{\partial_{d+1}} C_d(X,A) \xrightarrow{\partial_d} C_{d-1}(X,A) \rightarrow \cdots
+\end{equation}
+
+This sequence forms a chain complex because $\partial_{d+1}\circ\partial_{d} = 0$. We can then define the \emph{relative homology groups} $H_d(X,A)$ as the homology groups of this chain complex.
+
+We propose two important facts about $H_d(X,A)$:
+
+\begin{proposition}
+\begin{enumerate}
+	\item[]
+	\item[1.] Elements in $H_d(X,A)$ are represented by \textbf{relative cycles}, or $d$-chains $c$ in $C_d(X)$ such that $\partial_d(c) = C_{d-1}(A)$.
+	\item[2.] A relative cycle $c$ is trivial if and only if it is a \textbf{relative boundary}, i.e. $c$ is the sum of a chain in $C_d(A)$ and the boundary of a chain in $C_{d+1}(X)$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+\begin{enumerate}
+	\item[]
+	\item[1.] \glqq $\Rightarrow$\grqq{}: Let us begin by considering an element $[c] \in H_d(X,A)$, where $[c]$ represents the homology class of $c$ in $H_d(X,A)$. By definition, $[c]$ is the set of all $d$-chains $c'$ in $C_d(X)$ that are homologous to $c$, denoted by $\partial_d(c') = \partial_d(c)$. Now, let's examine the boundary of $c$ under the boundary operator $\partial_d$. We observe that $\partial_d(c) \in C_{d-1}(X)$, indicating that $\partial_d(c)$ is a $(d-1)$-chain in $X$. Since $A$ is a subspace of $X$, we can consider the inclusion map $f: A \hookrightarrow X$. This map induces a homomorphism $f_\star: C_{d-1}(A) \rightarrow C_{d-1}(X)$ between the chain groups. Next, let's consider the image of $\partial_d(c)$ under the map $i$. We have $f(\partial_d(c)) \in C_{d-1}(X)$, implying that $f(\partial_d(c))$ is a $(d-1)$-chain in $X$. As $f$ is a homomorphism, we have $f(\partial_d(c)) = \partial_d(f(c))$, where $f_\star(c)$ is a $(d-1)$-chain in $A$. Consequently, we can conclude that $\partial_d(c) = \partial_d(f(c))$, where $\partial_d(c) \in C_{d-1}(X)$ and $\partial_d(f(c)) \in C_{d-1}(A)$. This demonstrates that $c$ is a relative cycle, as it satisfies the condition $\partial_d(c) \in C_{d-1}(A)$.
+
+	\glqq $\Leftarrow$\grqq{}: Conversely, if we possess a relative cycle $c$ in $C_d(X)$ such that $\partial_d(c) \in C_{d-1}(A)$, we can consider the homology class $[c]$ in $H_d(X,A)$. This class represents the set of all $d$-chains in $C_d(X)$ that are homologous to $c$, denoted by $\partial_d(c') = \partial_d(c)$. Hence, we have successfully demonstrated that elements in $H_d(X,A)$ are represented by relative cycles, which are $d$-chains $c$ in $C_d(X)$ such that $\partial_d(c) \in C_{d-1}(A)$.
+	\item[2.] \glqq $\Rightarrow$\grqq{}: First, let's assume that $c$ is a relative boundary. This implies that $c$ can be written as the sum of a chain in $C_d(A)$, denoted as $a$, and the boundary of a chain in $C_{d+1}(X)$, denoted as $b$. Therefore, we have $c = a + \partial_{d+1}(b)$. Now, let's consider the boundary of $c$. We have $\partial_d(c) = \partial_d(a + \partial_{d+1}(b))$. By utilizing the linearity of the boundary operator, we can rewrite this as $\partial_d(a) + \partial_d(\partial_{d+1}(b))$. Since $a$ is a chain in $C_d(A)$, its boundary $\partial_d(a)$ lies in $C_{d-1}(A)$. Additionally, we know that $\partial_d(\partial_{d+1}(b)) = 0$ because the boundary of a boundary is always zero. Therefore, we have $\partial_d(c) = \partial_d(a) + \partial_d(\partial_{d+1}(b)) = \partial_d(a) + 0 = \partial_d(a)$. As $\partial_d(a)$ is in $C_{d-1}(A)$, we can conclude that $\partial_d(c)$ is also in $C_{d-1}(A)$. This demonstrates that $c$ is a relative cycle.
+
+	\glqq $\Leftarrow$\grqq{}: Conversely, let's assume that $c$ is a trivial relative cycle, indicating that $\partial_d(c)$ is in $C_{d-1}(A)$. Since $\partial_d(c)$ lies in $C_{d-1}(A)$, we can express it as the boundary of a chain in $C_d(A)$. Let's denote this chain as $a$. Therefore, we have $\partial_d(c) = \partial_d(a)$. Now, let's consider the chain $b = c - a$. We have $\partial_d(b) = \partial_d(c - a) = \partial_d(c) - \partial_d(a) = \partial_d(c) - \partial_d(c) = 0$. This demonstrates that $b$ is a chain in $C_d(X)$ whose boundary is zero. Hence, we have successfully shown that $c$ can be expressed as the sum of a chain in $C_d(A)$ (represented by $a$) and the boundary of a chain in $C_{d+1}(X)$ (represented by $b$). Consequently, $c$ is a relative boundary.
+
+	In conclusion, we have proven that a relative cycle $c$ is trivial if and only if it is a relative boundary, meaning that $c$ can be expressed as the sum of a chain in $C_d(A)$ and the boundary of a chain in $C_{d+1}(X)$.
+\end{enumerate}
+\end{proof}
+
+\begin{theorem}
+The relative homology groups $H_d(X,A)$ are part of the exact sequence:
+\begin{equation*}
+\cdots \rightarrow H_d(A) \rightarrow H_d(X) \rightarrow H_d(X,A) \rightarrow H_{d-1}(A) \rightarrow \cdots \rightarrow H_0(X,A) \rightarrow 0.
+\end{equation*}
+\end{theorem}
+
+\begin{proof}
+Consider the following diagram:
+\begin{equation}
+\begin{tikzcd}
+0 \arrow[r] & C_d(A) \arrow[r, "i", hook] \arrow[d, "\partial" description] & C_d(X) \arrow[r, "j", two heads] \arrow[d, "\partial" description] & {C_d(X,A)} \arrow[r] \arrow[d, "\partial" description] & 0 \\
+0 \arrow[r] & C_{d-1}(A) \arrow[r, "i", hook]                               & C_{d-1}(X) \arrow[r, "j", two heads]                               & {C_{d-1}(X,A)} \arrow[r]                               & 0.
+\end{tikzcd}
+\end{equation}
+$i$ is the inclusion $C_d(A) \hookrightarrow C_d(X)$ and $j$ is the quotient map $C_d(X) \twoheadrightarrow C_d(X,A)$. This diagram is commuting, and turning it by $90$ degrees yields the following diagram for abelian groups $A_i, B_i$ and $C_i$:
+\begin{equation}
+\begin{tikzcd}
+                 & 0 \arrow[d]                                                         & 0 \arrow[d]                                                     & 0 \arrow[d]                                                         &        \\
+\cdots \arrow[r] & A_{d+1} \arrow[r, "\partial"] \arrow[d, "i" description, hook]      & A_d \arrow[r, "\partial"] \arrow[d, "i" description, hook]      & A_{n-1} \arrow[r, "\partial"] \arrow[d, "i" description, hook]      & \cdots \\
+\cdots \arrow[r] & B_{d+1} \arrow[r, "\partial"] \arrow[d, "j" description, two heads] & B_d \arrow[r, "\partial"] \arrow[d, "j" description, two heads] & B_{d-1} \arrow[r, "\partial"] \arrow[d, "j" description, two heads] & \cdots \\
+\cdots \arrow[r] & C_{d+1} \arrow[r, "\partial"] \arrow[d]                             & C_d \arrow[r, "\partial"] \arrow[d]                             & C_{d-1} \arrow[r, "\partial"] \arrow[d]                             & \cdots \\
+                 & 0                                                                   & 0                                                               & 0                                                                   &       .
+\end{tikzcd}
+\end{equation}
+Presenting the diagram in this manner indicates that $i$ and $j$ are chain maps, and therefore induce maps $i_\star$ and $j_\star$ on homology, as stated in Theorem \ref{chainmaps}. Let us consider a cycle $c \in C_d$. Since $j$ is surjective, there exists a chain $b \in B_d$ such that $c = j(b)$. By the commutativity of the diagram, we have $j(\partial(b)) = \partial(j(b))$. As $c$ is a cycle, we have $\partial(c) = \partial(j(b)) = 0$. This implies that $\partial(b) \in \ker(j)$. Since the columns of the diagram are exact, we know that $\ker(j) = \text{im}(i)$. Therefore, there exists an element $a \in A_{d-1}$ such that $\partial(b) = i(a)$. By the commutativity of the diagram, we have $i(\partial(a)) = \partial(i(a)) = \partial(\partial(b))$. This leads to the implication that if $i$ is injective, then $\partial(a) = 0$. Hence, $a$ is a cycle and represents an element $[a] \in H_{d-1}(A)$ in the homology. We can now define the map $\partial: H_d(C) \rightarrow H_{d-1}(A)$ by sending the homology class of $[c]$ to the homology class of $[a]$, denoted as $\partial([c]) = [a]$. This definition is well-defined due to:
+\begin{enumerate}
+	\item Since $i$ is injective, the value of $a$ is uniquely determined by $\partial(b)$.
+	\item If we choose a different chain $b'$ instead of $b$, we have $j(b') = j(b) \implies j(b')-j(b) = 0 \implies j(b'-b) = 0 \implies b-b' \in \ker(j) = \text{im}(i)$. Therefore, $b-b' = i(a')$, or $b' = b+i(a')$. This implies that $\partial(b+i(a')) = \partial(b) + \partial(i(a')) = i(a) + i \partial(a') = i(a + \partial(a'))$. However, since $\partial(a') \sim 0$, we have $a+\partial(a') \sim a$.
+	\item If we select $c_\star$ from the coset containing $c$, it means that $c_\star = c + \partial(c')$. Since $c'$ can be expressed as $j(b')$ for some $b'$, we can rewrite $c+\partial(c')$ as $c+\partial(j(b')) = j(b) + j\partial(b') = j(b+\partial(b'))$. Therefore, modifying $c$ results in a corresponding modification of $b$ to a homologous element, but this does not have any impact on $a$ whatsoever.
+\end{enumerate}
+\end{proof}
+
+\begin{proposition}
+The map $\partial: H_d(C) \rightarrow H_{d-1}(A)$ is a homomorphism.
+\end{proposition}
+
+\begin{proof}
+If $\partial([c_1])$ yields $[a_1]$ and $\partial([c_2])$ yields $[a_2]$, as indicated earlier, then we can conclude that $j(b_1 + b_2) = j(b_1) + j(b_2) = c_1 + c_2$, and $i(a_1 + a_2) = \partial(b_1) + \partial(b_2)$. Consequently, it follows that $\partial([c_1] + [c_2]) = [a_1] + [a_2]$.
+\end{proof}
+
+\begin{lemma}
+\label{exacthomsequence}
+The given sequence,
+\begin{equation*}
+\cdots \rightarrow H_d(A) \xrightarrow{i_\star} H_d(B) \xrightarrow{j_\star} H_d(C) \xrightarrow{\partial} H_{d-1}(A) \xrightarrow{i_\star} H_{d-1}(B) \rightarrow \cdots
+\end{equation*}
+is said to be exact.
+\end{lemma}
+
+\begin{proof}
+There are six inclusions that need to be confirmed:
+\begin{enumerate}
+	\item Inclusion of the image of $i_\star$ within the kernel of $j_\star$: Because $j\circ i = 0$, it implies that $j_\star \circ i_\star = 0$.
+	\item Inclusion of the image of $j_\star$ within the kernel of $\partial$: By definition, $\partial(b) = 0$, so $\partial \circ j_\star = 0$.
+	\item Inclusion of the image of $\partial$ within the kernel of $i_\star$: We have $i_\star \circ \partial = 0$ since $i_\star \circ \partial([c]) = [\partial(b)] = 0$.
+	\item Inclusion of the kernel of $j_\star$ within the image of $i_\star$: A homology class in the kernel of $j_\star$ can be represented by a cycle $b \in B_d$ such that $j(b) = \partial(c')$ is a boundary for some $c' \in C_{d+1}$. The surjectivity of $j$ implies that $c' = j(b')$ for some $b' \in B_{d+1}$. Consequently, we have $j(b) = \partial(c') = \partial \circ j(b')$, which leads to $j(b - \partial(b')) = 0$. Therefore, $b - \partial(b') = i(a)$ for some $a \in A_d$. Since $i$ is injective, $a$ is a cycle because $i \circ \partial(a) = \partial \circ i(a) = \partial(b - \partial(b')) = \partial(b) = 0$, given that $b$ is a cycle. Consequently, $i_\star[a] = [b]$, and the two inclusions demonstrate that $\text{im}(i_\star) = \ker(j_\star)$.
+	\item Inclusion of the kernel of $\partial$ within the image of $j_\star$: Let's consider a representative $c$ of a homology class in $\ker(\partial)$. This means we have $a = \partial(a')$ for some $a' \in A_d$. The element $b - i(a')$ is a cycle because $\partial(b - i(a')) = \partial(b) - \partial \circ i(a') = \partial(b) - i(\partial(a')) = \partial(b) - i(a) = 0$. Furthermore, we have $j(b - i(a')) = j(b) - j \circ i(a') = j(b) = c$. Thus, we conclude that $\ker(\partial) \subset \text{im}(j_\star)$.
+	\item Inclusion of the kernel of $i_\star$ within the image of $\partial$: Consider a cycle $a$ in $A_{d-1}$ such that $i(a) = \partial(b)$ for some $b$ in $B_d$. Since $\partial(j(b)) = j(\partial(b)) = j \circ i(a) = 0$, we can determine that $j(b)$ is also a cycle. Consequently, $\partial([j(b)]) = [a]$, which demonstrates that $\ker(i_\star) \subset \text{im}(\partial)$.
+\end{enumerate}
+Indeed, we have established the following relationships:
+\begin{itemize}
+    \item $\text{im}(i_\star) = \ker(j_\star)$,
+    \item $\text{im}(j_\star) = \ker(\partial)$,
+    \item $\text{im}(\partial) = \ker(i_\star)$.
+\end{itemize}
+These relationships confirm that the sequence is exact, as it satisfies all the necessary conditions for exactness.\end{proof}
+
+\begin{proposition}
+The given sequence,
+\begin{equation*}
+\cdots \rightarrow H_d(A) \xrightarrow{i_\star} H_d(X) \xrightarrow{j_\star} H_d(X,A) \xrightarrow{\partial} H_{d-1}(A) \rightarrow \cdots \rightarrow H_d(X,A) \rightarrow 0
+\end{equation*}
+is said to be exact.
+\end{proposition}
+
+\begin{proof}
+The conclusion follows from the previous Proposition \ref{exacthomsequence}, with the additional observation that for a relative cycle $c$ in $H_d(X,A)$, the application of $\partial([c])$ results in the class of the cycle $[\partial(c)]$ in $H_{d-1}(A)$.
+\end{proof}
+
+\section{Equivalence of Simplicial Homology Group $H_d^\Delta$ and Singular Homology Group $H_d$}
+We aim to establish the equivalence between the groups $H_d(X)$ and $H^\Delta_d(X)$. It is important to note that simplicial homology groups are defined and computable only for simplicial structures. However, this limitation can be overcome by calculating singular homology groups for any topological space, including simplicial complexes. Furthermore, the fact that homeomorphic spaces have isomorphic singular homology groups suggests that we can impose a simplicial structure on a topological space. Therefore, to prove the equivalence of $H_d(X)$ and $H^\Delta_d(X)$, we consider an arbitrary simplicial complex as our topological space $X$. It is worth mentioning that not all topological spaces can be homeomorphic to a simplicial complex, but for the purpose of this paper, we will focus solely on spaces that can be represented as simplicial complexes.
+
+To demonstrate the equivalence of $H_d(X)$ and $H^\Delta_d(X)$, we need to establish the existence of an isomorphism between the two groups for all $d$. It is relatively straightforward to observe the existence of a homomorphism: we already have a map $L_d(X) \rightarrow C_d(X)$ from the simplicial chain group to the singular chain group, which maps each simplex of $X$ to $\tilde{\sigma}^{(d)}: \sigma^{(d)} \rightarrow X$. This map induces a corresponding map $H^\Delta_d(X) \rightarrow H_d(X)$.
 
 \begin{thebibliography}{100}
 \bibitem{1} Boissonnat, J. D., Chazal, F., Yvinec, M. (2018). Geometric and Topological Inference (Vol. 57). Cambridge University Press.
