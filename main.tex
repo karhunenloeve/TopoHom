@@ -353,8 +353,8 @@ A \textbf{chain map} $f$ between two chain complexes $(A, \partial_A)$ and $(B,\
 
 \begin{equation}
 \begin{tikzcd}
-\cdots \arrow[r, "\partial_A" description] & A_{d+1} \arrow[r, "\partial_A" description] \arrow[d, "f_{d+1}" description] & A_d \arrow[r, "\partial_A" description] \arrow[d, "f_d" description] & A_{d-1} \arrow[r, "\partial_A" description] \arrow[d, "f_{d-1}" description] & \cdots \\
-\cdots \arrow[r, "\partial_B" description] & B_{d+1} \arrow[r, "\partial_B" description]                                  & B_d \arrow[r, "\partial_B" description]                              & B_{d-1} \arrow[r, "\partial_B" description]                                  & \cdots
+\cdots \arrow[r, "\partial_A"] & A_{d+1} \arrow[r, "\partial_A"] \arrow[d, "f_{d+1}"] & A_d \arrow[r, "\partial_A"] \arrow[d, "f_d"] & A_{d-1} \arrow[r, "\partial_A"] \arrow[d, "f_{d-1}"] & \cdots \\
+\cdots \arrow[r, "\partial_B"] & B_{d+1} \arrow[r, "\partial_B"]                                  & B_d \arrow[r, "\partial_B"]                              & B_{d-1} \arrow[r, "\partial_B"]                                  & \cdots
 \end{tikzcd}
 \end{equation}
 
@@ -374,8 +374,8 @@ We can extend this definition by applying $f_\star$ to $d$-chains in $C_d(X)$. T
 
 \begin{equation}
 \begin{tikzcd}
-\cdots \arrow[r, "\partial" description] & C_{d+1}(X) \arrow[r, "\partial" description] \arrow[d, "f_{d+1}" description] & C_d(X) \arrow[r, "\partial" description] \arrow[d, "f_d" description] & C_{d-1}(X) \arrow[r, "\partial" description] \arrow[d, "f_{d-1}" description] & \cdots \\
-\cdots \arrow[r, "\partial" description] & C_{d+1}(Y) \arrow[r, "\partial" description]                                  & C_d(Y) \arrow[r, "\partial" description]                              & C_{d-1}(Y) \arrow[r, "\partial" description]                                  & \cdots
+\cdots \arrow[r, "\partial"] & C_{d+1}(X) \arrow[r, "\partial"] \arrow[d, "f_{d+1}"] & C_d(X) \arrow[r, "\partial"] \arrow[d, "f_d"] & C_{d-1}(X) \arrow[r, "\partial"] \arrow[d, "f_{d-1}"] & \cdots \\
+\cdots \arrow[r, "\partial"] & C_{d+1}(Y) \arrow[r, "\partial"]                                  & C_d(Y) \arrow[r, "\partial"]                              & C_{d-1}(Y) \arrow[r, "\partial"]                                  & \cdots
 \end{tikzcd}
 \end{equation}
 
@@ -475,17 +475,17 @@ The relative homology groups $H_d(X,A)$ are part of the exact sequence:
 \begin{proof}
 Consider the following diagram:
 \begin{equation}
-\begin{tikzcd}
-0 \arrow[r] & C_d(A) \arrow[r, "i", hook] \arrow[d, "\partial" description] & C_d(X) \arrow[r, "j", two heads] \arrow[d, "\partial" description] & {C_d(X,A)} \arrow[r] \arrow[d, "\partial" description] & 0 \\
+\begin{tikzcd}[row sep=1em]
+0 \arrow[r] & C_d(A) \arrow[r, "i", hook] \arrow[d, "\partial"] & C_d(X) \arrow[r, "j", two heads] \arrow[d, "\partial"] & {C_d(X,A)} \arrow[r] \arrow[d, "\partial"] & 0 \\
 0 \arrow[r] & C_{d-1}(A) \arrow[r, "i", hook]                               & C_{d-1}(X) \arrow[r, "j", two heads]                               & {C_{d-1}(X,A)} \arrow[r]                               & 0.
 \end{tikzcd}
 \end{equation}
 $i$ is the inclusion $C_d(A) \hookrightarrow C_d(X)$ and $j$ is the quotient map $C_d(X) \twoheadrightarrow C_d(X,A)$. This diagram is commuting, and turning it by $90$ degrees yields the following diagram for abelian groups $A_i, B_i$ and $C_i$:
 \begin{equation}
-\begin{tikzcd}
+\begin{tikzcd}[row sep=1em]
                  & 0 \arrow[d]                                                         & 0 \arrow[d]                                                     & 0 \arrow[d]                                                         &        \\
-\cdots \arrow[r] & A_{d+1} \arrow[r, "\partial"] \arrow[d, "i" description, hook]      & A_d \arrow[r, "\partial"] \arrow[d, "i" description, hook]      & A_{n-1} \arrow[r, "\partial"] \arrow[d, "i" description, hook]      & \cdots \\
-\cdots \arrow[r] & B_{d+1} \arrow[r, "\partial"] \arrow[d, "j" description, two heads] & B_d \arrow[r, "\partial"] \arrow[d, "j" description, two heads] & B_{d-1} \arrow[r, "\partial"] \arrow[d, "j" description, two heads] & \cdots \\
+\cdots \arrow[r] & A_{d+1} \arrow[r, "\partial"] \arrow[d, "i", hook]      & A_d \arrow[r, "\partial"] \arrow[d, "i", hook]      & A_{n-1} \arrow[r, "\partial"] \arrow[d, "i", hook]      & \cdots \\
+\cdots \arrow[r] & B_{d+1} \arrow[r, "\partial"] \arrow[d, "j", two heads] & B_d \arrow[r, "\partial"] \arrow[d, "j", two heads] & B_{d-1} \arrow[r, "\partial"] \arrow[d, "j", two heads] & \cdots \\
 \cdots \arrow[r] & C_{d+1} \arrow[r, "\partial"] \arrow[d]                             & C_d \arrow[r, "\partial"] \arrow[d]                             & C_{d-1} \arrow[r, "\partial"] \arrow[d]                             & \cdots \\
                  & 0                                                                   & 0                                                               & 0                                                                   &       .
 \end{tikzcd}
@@ -564,7 +564,7 @@ To demonstrate the equivalence of $H_d(X)$ and $H^\Delta_d(X)$, we need to estab
 In a commutative diagram structured as follows:
 \begin{equation}
 \begin{tikzcd}
-A \arrow[r, "i"] \arrow[d, "\alpha" description] & B \arrow[r, "j"] \arrow[d, "\beta" description] & C \arrow[r, "k"] \arrow[d, "\gamma" description] & D \arrow[r, "l"] \arrow[d, "\delta" description] & E \arrow[d, "\epsilon" description] \\
+A \arrow[r, "i"] \arrow[d, "\alpha"] & B \arrow[r, "j"] \arrow[d, "\beta"] & C \arrow[r, "k"] \arrow[d, "\gamma"] & D \arrow[r, "l"] \arrow[d, "\delta"] & E \arrow[d, "\epsilon"] \\
 A' \arrow[r, "i'"]                               & B' \arrow[r, "j'"]                              & C' \arrow[r, "k'"]                               & D' \arrow[r, "l'"]                               & E'.                                 
 \end{tikzcd}
 \end{equation}
