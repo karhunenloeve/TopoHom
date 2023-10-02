@@ -231,13 +231,13 @@ At this point, we can deduce the following corollary from Theorem \ref{pathconne
 
 \begin{corollary}
 \label{directsum0hom}
-The zero-dimensional homology group of a complex $K$ over $\mathbb{Z}$ can be represented as $\mathbb{Z}^p = \bigoplus_p \mathbb{Z}$, where $p$ denotes the number of connected components present in $K$.
+The zero-dimensional simplicial homology group of a complex $K$ over $\mathbb{Z}$ can be represented as $\mathbb{Z}^p = \bigoplus_p \mathbb{Z}$, where $p$ denotes the number of connected components present in $K$.
 \end{corollary}
 
 \begin{example}
 \begin{itemize}
 	\item[]
-	\item This implies that the zeroth homology group of the circle is isomorphic to $\mathbb{Z}$. If we consider a simplicial representation of the circle using four one-simplices, $v_1 = (w,v)$, $v_2 = (v,y)$, $v_3 = (y,x)$, and $v_4 = (x,w)$, the group $Z_0$ consists of sums over the four zero-simplices $v$, $w$, $x$, and $y$ with coefficients in $\mathbb{Z}$. Let $c$ be a zero-chain with non-zero coefficients given by
+	\item This implies that the zeroth homology group of the circle is isomorphic to $\mathbb{Z}$. If we consider a simplicial representation of the circle using four one-simplices, $v_1 = (w,v)$, $v_2 = (v,y)$, $v_3 = (y,x)$, and $v_4 = (x,w)$, the group $Z_0^\Delta$ consists of sums over the four zero-simplices $v$, $w$, $x$, and $y$ with coefficients in $\mathbb{Z}$. Let $c$ be a zero-chain with non-zero coefficients given by
 	\begin{equation}
 	c = g_1v+g_2w+g_3x+g_4y.
 	\end{equation}
@@ -250,19 +250,19 @@ The zero-dimensional homology group of a complex $K$ over $\mathbb{Z}$ can be re
 	c'' = (g_1-g_2+g_3-g_4)v.
 	\end{equation}
 	Since $c'' \sim c$, it represents an element of $H^\Delta_0$. Moreover, since $g_i \in \mathbb{Z}$, we can write $(g_1-g_2+g_3-g_4) \in \mathbb{Z}$ as $c'' = gv$, where $g$ is an element of $\mathbb{Z}$. Therefore, we can choose any $g$, which implies that $H^\Delta_0 \cong \mathbb{Z}$.
-	\item We will demonstrate that $H^\Delta_n(S^n) \cong \mathbb{Z}$. It is worth noting that the $n$-simplex $\sigma^{(n)}$ and the $n$-ball are homeomorphic. Consequently, their boundaries, which consist of $(n-1)$-simplices, and the $n$-sphere are also homeomorphic. Therefore, the appropriate simplicial structure to impose on $S^n$ is that of the boundary of the $(n+1)$-simplex $\sigma^{(n+1)}$. Let ${v_0,\ldots,v_{n-1}}$ denote the set of vertices of $\sigma^{(n+1)}$. It is important to note that this set is not oriented, and the orientations of the $(n-1)$-simplices can be arbitrarily determined. We will utilize their numbering to establish orientations. Consequently, all $n$-chains on this structure can be expressed as:
+	\item We will demonstrate that $H^\Delta_d(S^d) \cong \mathbb{Z}$. It is worth noting that the $d$-simplex $\sigma^{(d)}$ and the $d$-ball are homeomorphic. Consequently, their boundaries, which consist of $(d-1)$-simplices, and the $d$-sphere are also homeomorphic. Therefore, the appropriate simplicial structure to impose on $S^d$ is that of the boundary of the $(d+1)$-simplex $\sigma^{(d+1)}$. Let ${v_0,\ldots,v_{d-1}}$ denote the set of vertices of $\sigma^{(d+1)}$. It is important to note that this set is not oriented, and the orientations of the $(d-1)$-simplices can be arbitrarily determined. We will utilize their numbering to establish orientations. Consequently, all $d$-chains on this structure can be expressed as:
 	\begin{equation}
 	\label{chain}
-	c = \sum_{i=0}^{n+1}g_i (v_0,\ldots,v_{i-1},v_{i+1},\ldots,v_n),
+	c = \sum_{i=0}^{d+1}g_i (v_0,\ldots,v_{i-1},v_{i+1},\ldots,v_d),
 	\end{equation}
-	where $g_i \in \mathbb{Z}$. Since $\sigma^{(n+1)}$ itself is not part of the structure, there are no boundaries in $Z_n$, the group of cycles. Therefore, $H_n = Z_n/B_n$ represents the group of cycles. If $c \in Z_n$, then $\partial(c) = 0$. By using Eq. \ref{chain}, we have:
-	\begin{align} \partial(c) = &\partial\left(\sum_{i=0}^{n+1} g_i(v_0,\ldots,v_{i-1},v_{i+1},\ldots,v_n) \right) \\ = &\sum_{i=0}^{n+1}g_i \big(\sum_{j1}^{n+1}(-1)^j(v_0,\ldots,v_{i-1},v_{i+1},\ldots,v_{j-1},v_{j+1},\ldots,v_n)\big). \end{align}
+	where $g_i \in \mathbb{Z}$. Since $\sigma^{(d+1)}$ itself is not part of the structure, there are no boundaries in $Z^\Delta_d$, the group of simplicial cycles. Therefore, $H^\Delta_d = Z\Delta_d/B^\Delta_d$ represents the group of simplicial cycles. If $c \in Z^\Delta_d$, then $\partial_{d+1}(c) = 0$. By using Eq. \ref{chain}, we have:
+	\begin{align} \partial_{d+1}(c) = &\partial_{d+1}\left(\sum_{i=0}^{d+1} g_i(v_0,\ldots,v_{i-1},v_{i+1},\ldots,v_d) \right) \\ = &\sum_{i=0}^{d+1}g_i \big(\sum_{j1}^{d+1}(-1)^j(v_0,\ldots,v_{i-1},v_{i+1},\ldots,v_{j-1},v_{j+1},\ldots,v_d)\big). \end{align}
 	By rearranging this sum, we obtain terms of the form:
-	\begin{equation} \label{terms} (g_k-g_l)(v_0,\ldots,v_{j-1},v_{j+1},\ldots,v_{i-1},v_{i+1},\ldots,v_n) \end{equation}
-	where $k,l = 0, \ldots, n+1$ for all $i,j = 0, \ldots, n$. Each pair of $n$-simplices of $\sigma^{(n+1)}$ intersect along an $(n-1)$-face. Therefore, we obtain terms of the form given in Eq. \ref{terms} for each of these faces. From this, we can deduce that if $\partial(c) = 0$, we must have $g_k = g_l$ for all $k,l = 0, \ldots, n+1$. In other words, $g_0 = g_1 = \cdots = g_{n+1}$. Consequently, our original $n$-chain can be rewritten as:
-	\begin{equation} c = \sum_{i=0}^{n+1}g_0(v_0,\ldots,v_{i-1},v_{i+1},\ldots,v_n), \end{equation}
-	allowing us to choose $g_0$ from $\mathbb{Z}$. Thus, we conclude that $H^\Delta_n(S^n) \cong \mathbb{Z}$.
-	\item We demonstrate that $H^\Delta_n(D^n) = 0$. To do so, we employ the simplest simplicial structure for $D^n$, which is that of the $n$-simplex $\sigma^{(n)}$. Consequently, all $n$-chains can be expressed as $c = g \sigma^{(n)}$, where $g \in \mathbb{Z}$. It is important to note that this form is never a boundary, thus implying that $H_n = Z_n$. However, $\partial(c) = 0$ only when $g = 0$. Consequently, we can conclude that $H^\Delta_n(D^n) \cong 0$.
+	\begin{equation} \label{terms} (g_k-g_l)(v_0,\ldots,v_{j-1},v_{j+1},\ldots,v_{i-1},v_{i+1},\ldots,v_d) \end{equation}
+	where $k,l = 0, \ldots, d+1$ for all $i,j = 0, \ldots, d$. Each pair of $d$-simplices of $\sigma^{(d+1)}$ intersect along an $(d-1)$-face. Therefore, we obtain terms of the form given in Eq. \ref{terms} for each of these faces. From this, we can deduce that if $\partial_{d}(c) = 0$, we must have $g_k = g_l$ for all $k,l = 0, \ldots, d+1$. In other words, $g_0 = g_1 = \cdots = g_{d+1}$. Consequently, our original $d$-chain can be rewritten as:
+	\begin{equation} c = \sum_{i=0}^{n+1}g_0(v_0,\ldots,v_{i-1},v_{i+1},\ldots,v_d), \end{equation}
+	allowing us to choose $g_0$ from $\mathbb{Z}$. Thus, we conclude that $H^\Delta_d(S^d) \cong \mathbb{Z}$.
+	\item We demonstrate that $H^\Delta_d(D^d) = 0$. To do so, we employ the simplest simplicial structure for $D^d$, which is that of the $d$-simplex $\sigma^{(d)}$. Consequently, all $d$-chains can be expressed as $c = g \sigma^{(d)}$, where $g \in \mathbb{Z}$. It is important to note that this form is never a boundary, thus implying that $H^\Delta_d = Z^\Delta_d$. However, $\partial_d(c) = 0$ only when $g = 0$. Consequently, we can conclude that $H^\Delta_d(D^d) \cong 0$.
 \end{itemize}
 \end{example}
 
