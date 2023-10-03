@@ -96,10 +96,10 @@ c := g_1 \sigma^{(d)}_1 + g_2 \sigma^{(d)}_2 + \ldots + g_k \sigma^{(d)}_k = \su
 \paragraph{Note:} Henceforth we will assume that $G = (\mathbb{Z},+)$.
 
 \begin{lemma}
-The set of simplicial $d$-chains $L^\Delta_d$ is an abelian group $(L^\Delta_d,+)$.
+The set of simplicial $d$-chains $C^\Delta_d$ is an abelian group $(C^\Delta_d,+)$.
 \end{lemma}
 \begin{proof}
-The identity element of the group is represented by the empty chain $\sum_{i=1}^{k}$ $e_G \sigma^{d}_i$ $= e_{L_d^\Delta}$. The sum of two chains is defined as $c+c' = \sum_{i=1}^{k} g_i \sigma_i^{(d)}$ $+ \sum_{j=1}^{l} g'_j \sigma_j^{(d)}$ $=$ $\sum_{i=1}^{k} (g_i+g_i') \sigma_i^{(d)}$ $+$ $\sum_{j=k}^{l} g'_j \sigma_j^{(d)}$ if $k \leq l$ and $c+c' = \sum_{i=1}^{k} g_i \sigma_i^{(d)} + \sum_{j=1}^{l} g'_j \sigma_j^{(d)} = \sum_{i=1}^{l} (g_i+g_i') \sigma_i^{(d)} + \sum_{j=l}^{k} g_j \sigma_j^{(d)}$ if $k > l$, thus, we can conclude that $c+c' \in L^\Delta_d$. The associativity of the group operation in $L^\Delta_d$ follows directly from the associativity of the group operation in $G$. The inverse element is defined by $e_{L^\Delta_d} = c + (-c) = \sum_{i=1}^{k} g_i \sigma_i^{(d)} - \sum_{i=1}^{k} (-g_i) \sigma_i^{(d)} = \sum_{i=1}^{k} (g_i-g_i) \sigma_i^{(d)}$ with $c,-c \in L^\Delta_d$.
+The identity element of the group is represented by the empty chain $\sum_{i=1}^{k}$ $e_G \sigma^{d}_i$ $= e_{C_d^\Delta}$. The sum of two chains is defined as $c+c' = \sum_{i=1}^{k} g_i \sigma_i^{(d)}$ $+ \sum_{j=1}^{l} g'_j \sigma_j^{(d)}$ $=$ $\sum_{i=1}^{k} (g_i+g_i') \sigma_i^{(d)}$ $+$ $\sum_{j=k}^{l} g'_j \sigma_j^{(d)}$ if $k \leq l$ and $c+c' = \sum_{i=1}^{k} g_i \sigma_i^{(d)} + \sum_{j=1}^{l} g'_j \sigma_j^{(d)} = \sum_{i=1}^{l} (g_i+g_i') \sigma_i^{(d)} + \sum_{j=l}^{k} g_j \sigma_j^{(d)}$ if $k > l$, thus, we can conclude that $c+c' \in C^\Delta_d$. The associativity of the group operation in $C^\Delta_d$ follows directly from the associativity of the group operation in $G$. The inverse element is defined by $e_{C^\Delta_d} = c + (-c) = \sum_{i=1}^{k} g_i \sigma_i^{(d)} - \sum_{i=1}^{k} (-g_i) \sigma_i^{(d)} = \sum_{i=1}^{k} (g_i-g_i) \sigma_i^{(d)}$ with $c,-c \in C^\Delta_d$.
 \end{proof}
 
 \begin{definition}
@@ -110,13 +110,13 @@ Let $\sigma^{(d)}$ be an oriented $d$-simplex in a complex $K$. The $\textbf{bou
 where $\sigma^{(d-1)}_i$ is an $(d-1)$-face of $\sigma^{(d)}$. If $d=0$, we define $\partial(\sigma^{(0)}) = e_G = 0$.
 \end{definition}
 
-Since $\sigma^{(d)}$ is an oriented simplex, the $\sigma^{(d-1)}_i$-faces also have associated orientations. We can extend the definition of the boundary linearly to elements of $L^\Delta_d$.
+Since $\sigma^{(d)}$ is an oriented simplex, the $\sigma^{(d-1)}_i$-faces also have associated orientations. We can extend the definition of the boundary linearly to elements of $C^\Delta_d$.
 
 \begin{lemma}
-The \textbf{boundary operator} is a group homomorphism $\partial: L^\Delta_d \rightarrow L^\Delta_{d-1}$.
+The \textbf{boundary operator} is a group homomorphism $\partial: C^\Delta_d \rightarrow C^\Delta_{d-1}$.
 \end{lemma}
 \begin{proof}
-We define the boundary operator for a $d$-chain $c = \sum_{i=1}^{k} g_i \sigma_i^{(d)}$ as follows: $\partial(c) = \sum_{i=1}^{k} g_i \partial(\sigma_i^{(d)}) = \sum_{i=1}^{k} g_i \sum_{j=1}^{d} \sigma_j^{(d-1)} = \sum_{i=1}^{k} \sum_{j=1}^{d} g_i \sigma_j^{(d-1)} \in L^\Delta_{d-1}$, where $\sigma_i^{(d)}$ are the $d$-simplices of $K$. We can compute this by
+We define the boundary operator for a $d$-chain $c = \sum_{i=1}^{k} g_i \sigma_i^{(d)}$ as follows: $\partial(c) = \sum_{i=1}^{k} g_i \partial(\sigma_i^{(d)}) = \sum_{i=1}^{k} g_i \sum_{j=1}^{d} \sigma_j^{(d-1)} = \sum_{i=1}^{k} \sum_{j=1}^{d} g_i \sigma_j^{(d-1)} \in C^\Delta_{d-1}$, where $\sigma_i^{(d)}$ are the $d$-simplices of $K$. We can compute this by
 \begin{align}
 \partial(c + c') &= \partial(\sum_{i=1}^{k} g_i \sigma_i^{(d)} + \sum_{j=1}^{l} g'_j \sigma_j^{(d)}) \\
 &= \sum_{i=1}^{k} g_i \partial(\sigma_i^{(d)}) + \sum_{j=1}^{l} g'_j \partial(\sigma_j^{(d)}) \\
@@ -132,11 +132,11 @@ Let's consider the $2$-simplex $\sigma^{(2)}$ with vertices $v_0$, $v_1$, and $v
 &= \partial(v_0,v_1) + \partial(v_1,v_2) + \partial(v_2,v_0) \\
 &= [(v_1)-(v_0)] + [(v_2)-(v_1)]+[(v_0)-(v_2)].
 \end{align}
-We observe that $L^\Delta_0$ is an abelian group and that oppositely oriented simplices cancel each other out, resulting in $\partial(\partial(\sigma^{(2)})) = 0$. This property can be generalized to higher dimensions through induction. Therefore, since $\partial$ is a linear operator and the chain $c$ is a sum of $d$-simplices, we can conclude that $\partial^2(c) = 0$ for any $d$-chain $c$ in $L^\Delta_d$. Consequently, the boundary of the boundary is zero. Moreover, if the boundary of a simplex is zero, it is referred to as a \emph{cycle}. By this definition, we can deduce that the boundary of any simplex is a cycle.
+We observe that $C^\Delta_0$ is an abelian group and that oppositely oriented simplices cancel each other out, resulting in $\partial(\partial(\sigma^{(2)})) = 0$. This property can be generalized to higher dimensions through induction. Therefore, since $\partial$ is a linear operator and the chain $c$ is a sum of $d$-simplices, we can conclude that $\partial^2(c) = 0$ for any $d$-chain $c$ in $C^\Delta_d$. Consequently, the boundary of the boundary is zero. Moreover, if the boundary of a simplex is zero, it is referred to as a \emph{cycle}. By this definition, we can deduce that the boundary of any simplex is a cycle.
 \end{example}
 
 \begin{definition}
-A $d$-chain is referred to as a \textbf{cycle} if its boundary is equal to zero. We denote the set of $d$-cycles of a complex $K$ over the group $\mathbb{Z}$ as $Z_d$, the simplicial \textbf{cycle group}. It is important to note that $Z^\Delta_d$ is a subgroup of $L^\Delta_d$ and can also be expressed as $Z^\Delta_d = \ker(\partial_d)$.
+A $d$-chain is referred to as a \textbf{cycle} if its boundary is equal to zero. We denote the set of $d$-cycles of a complex $K$ over the group $\mathbb{Z}$ as $Z_d$, the simplicial \textbf{cycle group}. It is important to note that $Z^\Delta_d$ is a subgroup of $C^\Delta_d$ and can also be expressed as $Z^\Delta_d = \ker(\partial_d)$.
 \end{definition}
 
 \begin{definition}
@@ -182,24 +182,24 @@ Let $K_1, \ldots, K_p$ be the collection of all connected components of a comple
 \end{theorem}
 
 \begin{proof}
-Let $L^\Delta_d$ represent the group of simplicial $d$-chains of $K$, and $K_i$ denote the $i$th component of $K$. We can define $L^\Delta_{d_i}$ as the group of simplicial $d$-chains of $K_i$. It is evident that $L^\Delta_{d_i}$ is a subgroup of $L^\Delta_d$. Furthermore, we observe that $L^\Delta_d$ can be expressed as the direct sum of $L^\Delta_{d_1}, \ldots, L^\Delta_{d_p}$:
+Let $C^\Delta_d$ represent the group of simplicial $d$-chains of $K$, and $K_i$ denote the $i$th component of $K$. We can define $C^\Delta_{d_i}$ as the group of simplicial $d$-chains of $K_i$. It is evident that $C^\Delta_{d_i}$ is a subgroup of $C^\Delta_d$. Furthermore, we observe that $C^\Delta_d$ can be expressed as the direct sum of $C^\Delta_{d_1}, \ldots, C^\Delta_{d_p}$:
 \begin{equation}
-L^\Delta_d = L^\Delta_{d_1} \oplus \cdots \oplus L^\Delta_{d_p}.
+C^\Delta_d = C^\Delta_{d_1} \oplus \cdots \oplus C^\Delta_{d_p}.
 \end{equation}
-Our goal is to demonstrate that a similar decomposition can be applied to the groups $B^\Delta_d$ and $Z^\Delta_d$. By considering $B^\Delta_{d_i}$ as the image of $\partial_{d+1}$ restricted to the subgroup $L^\Delta_{d_i}$, we can represent the group $B^\Delta_d$ as the direct sum of these restrictions:
+Our goal is to demonstrate that a similar decomposition can be applied to the groups $B^\Delta_d$ and $Z^\Delta_d$. By considering $B^\Delta_{d_i}$ as the image of $\partial_{d+1}$ restricted to the subgroup $C^\Delta_{d_i}$, we can represent the group $B^\Delta_d$ as the direct sum of these restrictions:
 \begin{equation}
 B^\Delta_d = B^\Delta_{d_1} \oplus \cdots \oplus B^\Delta_{d_p}.
 \end{equation}
-Thus, for any element $c \in L^\Delta_{d+1}$, which can be represented as:
+Thus, for any element $c \in C^\Delta_{d+1}$, which can be represented as:
 \begin{align}
 c = c_1 + \cdots + c_p, \quad \partial_{d+1}(c) = \partial_{d+1}(c_1) + \cdots + \partial_{d+1}(c_p) \in B^\Delta_d,
 \end{align}
-where $c_i \in L^\Delta_{{(d+1)}_i}$.
-Let us define $Z^\Delta_{d_i}$ as the intersection of the kernel of $\partial_{d}$ and $L^\Delta_{d_i}$. It follows that $Z^\Delta_d$ can be expressed as the direct sum of $Z^\Delta_{d_1}, \ldots, Z^\Delta_{d_p}$:
+where $c_i \in C^\Delta_{{(d+1)}_i}$.
+Let us define $Z^\Delta_{d_i}$ as the intersection of the kernel of $\partial_{d}$ and $C^\Delta_{d_i}$. It follows that $Z^\Delta_d$ can be expressed as the direct sum of $Z^\Delta_{d_1}, \ldots, Z^\Delta_{d_p}$:
 \begin{equation}
 Z^\Delta_d = Z^\Delta_{d_1} \oplus \cdots \oplus Z^\Delta_{d_p}.
 \end{equation}
-To verify this, we observe that for an element $c \in L^\Delta_d$ to belong to $Z^\Delta_d$, we require $\partial_{d}(c) = 0$. However, we can express $\partial_{d}(c)$ as $\partial_{d}(c_1) + \cdots + \partial_{d}(c_p)$. Therefore, for $\partial_{d}(c) = 0$ to hold, it implies that $\partial_{d}(c_i) = 0$, indicating that $c_i \in Z^\Delta_{d_i}$.
+To verify this, we observe that for an element $c \in C^\Delta_d$ to belong to $Z^\Delta_d$, we require $\partial_{d}(c) = 0$. However, we can express $\partial_{d}(c)$ as $\partial_{d}(c_1) + \cdots + \partial_{d}(c_p)$. Therefore, for $\partial_{d}(c) = 0$ to hold, it implies that $\partial_{d}(c_i) = 0$, indicating that $c_i \in Z^\Delta_{d_i}$.
 Since both $Z^\Delta_d$ and $B^\Delta_d$ can be decomposed componentwise, we can conclude that:
 \begin{equation}
 Z^\Delta_d / B^\Delta_d = Z^\Delta_{d_1} / B^\Delta_{d_1} \oplus \cdots \oplus Z^\Delta_{d_p} / B^\Delta_{d_p},
@@ -220,11 +220,11 @@ If $K$ is a connected complex and $c$ is a $0$-chain with $I(c) = 0$, then the c
 \end{proposition}
 
 \begin{proof}
-We begin by proving that $c \sim 0 \implies I(c) = 0$. Let $\sigma^{(1)} = (v_0,v_1)$ be a $1$-simplex. Then, for a chain $c = \partial_1(g\sigma^{(1)}) = gv_1-gv_0$, we have $c \sim 0$. It is clear that $I(c) = I(g\sigma^{(1)}) = g-g = 0$. Since $I(c+c') = I(c) + I(c')$, $I$ is a group homomorphism. For any $c \in L^\Delta_1$ of the form $\sum_{i=1}^{k} g_i \sigma_i^{(1)}$, where $\sigma_i^{(1)} = (v_i,v_{i+1})$, we have $c = \partial_1(c) \sim 0 \implies I(c) = I(\partial_1(c)) = 0$.
+We begin by proving that $c \sim 0 \implies I(c) = 0$. Let $\sigma^{(1)} = (v_0,v_1)$ be a $1$-simplex. Then, for a chain $c = \partial_1(g\sigma^{(1)}) = gv_1-gv_0$, we have $c \sim 0$. It is clear that $I(c) = I(g\sigma^{(1)}) = g-g = 0$. Since $I(c+c') = I(c) + I(c')$, $I$ is a group homomorphism. For any $c \in C^\Delta_1$ of the form $\sum_{i=1}^{k} g_i \sigma_i^{(1)}$, where $\sigma_i^{(1)} = (v_i,v_{i+1})$, we have $c = \partial_1(c) \sim 0 \implies I(c) = I(\partial_1(c)) = 0$.
 
 To prove the forward direction, $I(x) = 0 \implies c \sim 0$, we consider two vertices $v$ and $w$ of $K$. Since $K$ is connected, there exists a path between $v$ and $w$ consisting of $1$-simplices $\sigma_i^{(1)} = (v_i,v_{i+1})$, $i=1,\ldots,k-1$, where $v_0 = v$ and $v_k = w$. We consider the boundary of the chain $c = \sum_{i=1}^{k} g \sigma_i^{(1)}$, given by $\partial_1(c) = \sum_{i=1}^{k}g \partial_1(\sigma_i^{(1)}) = \sum_{i=1}^{k}g [(v_{i+1}) - (v_i))] = gw - gv$. Since $\partial_1(c)$ is a boundary, we have $c = \partial_1(c) \sim 0$. This implies that $(gw-gv) \sim 0$, which further implies $gw \sim gv$. Therefore, any $0$-chain $c$ in $K$ is homologous to the chain $gv$. We observe that homologous chains have equal indices, i.e., $I(c) = I(gv) = g$. Thus, we have $c \sim gv \implies c \sim I(c)v$. This shows that if $I(c) = 0$, then $c \sim 0$. Hence, $I(c) = 0$ is equivalent to $c \sim 0$.
 
-As mentioned, $I$ is a homomorphism from $L^\Delta_0 = Z^\Delta_0$ to $\mathbb{Z}$. For a $0$-simplex $c$ and $g \in \mathbb{Z}$, the chain $gc \in L^\Delta_0$ is a cycle with $I(gc) = g$. Therefore, $I(Z^\Delta_0) = \mathbb{Z}$. Since $I(c) = 0$ is equivalent to $c \sim 0$, we have $B^\Delta_0 = \ker(I)$. This implies that $H^\Delta_0 = Z^\Delta_0/B^\Delta_0 \cong \mathbb{Z}$.
+As mentioned, $I$ is a homomorphism from $C^\Delta_0 = Z^\Delta_0$ to $\mathbb{Z}$. For a $0$-simplex $c$ and $g \in \mathbb{Z}$, the chain $gc \in C^\Delta_0$ is a cycle with $I(gc) = g$. Therefore, $I(Z^\Delta_0) = \mathbb{Z}$. Since $I(c) = 0$ is equivalent to $c \sim 0$, we have $B^\Delta_0 = \ker(I)$. This implies that $H^\Delta_0 = Z^\Delta_0/B^\Delta_0 \cong \mathbb{Z}$.
 \end{proof}
 
 At this point, we can deduce the following corollary from Theorem \ref{pathconnect} and Proposition \ref{decomposition}:
@@ -550,7 +550,7 @@ Given $Y \subset A \subset X$, with the closure of $Y$ contained in the interior
 \section{Equivalence of Simplicial Homology Group $H_d^\Delta$ and Singular Homology Group $H_d$}
 We aim to establish the equivalence between the groups $H_d(X)$ and $H^\Delta_d(X)$. It is important to note that simplicial homology groups are defined and computable only for simplicial structures. However, this limitation can be overcome by calculating singular homology groups for any topological space, including simplicial complexes. Furthermore, the fact that homeomorphic spaces have isomorphic singular homology groups suggests that we can impose a simplicial structure on a topological space. Therefore, to prove the equivalence of $H_d(X)$ and $H^\Delta_d(X)$, we consider an arbitrary simplicial complex as our topological space $X$. It is worth mentioning that not all topological spaces can be homeomorphic to a simplicial complex, but for the purpose of this paper, we will focus solely on spaces that can be represented as simplicial complexes.
 
-To demonstrate the equivalence of $H_d(X)$ and $H^\Delta_d(X)$, we need to establish the existence of an isomorphism between the two groups for all $d$. It is relatively straightforward to observe the existence of a homomorphism: we already have a map $L^\Delta_d(X) \rightarrow C_d(X)$ from the simplicial chain group to the singular chain group, which maps each simplex of $X$ to $\tilde{\sigma}^{(d)}: \sigma^{(d)} \rightarrow X$. This map induces a corresponding map $H^\Delta_d(X) \rightarrow H_d(X)$.
+To demonstrate the equivalence of $H_d(X)$ and $H^\Delta_d(X)$, we need to establish the existence of an isomorphism between the two groups for all $d$. It is relatively straightforward to observe the existence of a homomorphism: we already have a map $C^\Delta_d(X) \rightarrow C_d(X)$ from the simplicial chain group to the singular chain group, which maps each simplex of $X$ to $\tilde{\sigma}^{(d)}: \sigma^{(d)} \rightarrow X$. This map induces a corresponding map $H^\Delta_d(X) \rightarrow H_d(X)$.
 
 \begin{lemma}{(The Five Lemma)}
 \label{fivelemma}
@@ -584,14 +584,14 @@ For all values of $d$, the homomorphisms from the simplicial homology group $H^\
 \begin{proof}
 Consider a simplicial complex $X$. For the $k$-skeleton $X^k$ of $X$, we obtain the following commutative diagram of exact sequences due to the inclusion $X^{k-1} \subset X^k$:
 \begin{equation*}
-\begin{tikzcd}[column sep=1.2em]
+\begin{tikzcd}[column sep=1em]
 {H^\Delta_{d+1}(X^k,X^{k-1})} \arrow[d] \arrow[r] & H^\Delta_{d}(X^{k-1}) \arrow[d] \arrow[r] & H^\Delta_{d}(X^k) \arrow[d] \arrow[r] & {H^\Delta_{d}(X^k,X^{k-1})} \arrow[d] \arrow[r] & H^\Delta_{d-1}(X^{k-1}) \arrow[d] \\
 {H_{d+1}(X^k,X^{k-1})} \arrow[r]                  & H_{d}(X^{k-1}) \arrow[r]                  & H_{d}(X^k) \arrow[r]                  & {H_{d}(X^k,X^{k-1})} \arrow[r]                  & H_{d-1}(X^{k-1})                 
 \end{tikzcd}
 \end{equation*}
-Here, $X^k/X^{k-1}$ contains only simplices of dimension $k$, so for $d \neq k$, the group $L_d(X^k, X^{k-1})$ is trivial. When $d = k$, $L_d(X^k, X^{k-1})$ is a free abelian group with a basis consisting of the $k$-simplices of $X$. Since the cycles $Z_d$ form a subgroup of $L_d$, and the boundary group $B_d$ is empty, $H^\Delta_d(X^k, X^{k-1})$ is essentially the same as $L_d$, with the distinction that when $d = k$, the basis of $Z_d$ consists of $k$-cycles.
+Here, $X^k/X^{k-1}$ contains only simplices of dimension $k$, so for $d \neq k$, the group $C_d(X^k, X^{k-1})$ is trivial. When $d = k$, $C_d(X^k, X^{k-1})$ is a free abelian group with a basis consisting of the $k$-simplices of $X$. Since the cycles $Z_d$ form a subgroup of $C_d$, and the boundary group $B_d$ is empty, $H^\Delta_d(X^k, X^{k-1})$ is essentially the same as $C_d$, with the distinction that when $d = k$, the basis of $Z_d$ consists of $k$-cycles.
 
-We notice that the characteristic maps $\sigma^{(k)} \rightarrow X$ for all the $k$-simplices of $X$ provide us with a map $\Phi: \coprod_i(\sigma^{(k)}_i, \sigma^{(k-1)}i) \rightarrow (X^k, X^{k-1})$. It is evident that this map induces a homeomorphism $\Phi\star: \coprod_i \sigma^{(k)}_i/\coprod_i \sigma^{(k-1)}_i \rightarrow X^k/X^{k-1}$. As a result, we have $H_d(\coprod_i (\sigma^{(k)}_i, \sigma^{(k-1)}_i)) \cong H_d(X^k, X^{k-1})$.
+We notice that the characteristic maps $\sigma^{(k)} \rightarrow X$ for all the $k$-simplices of $X$ provide us with a map $\Phi: \coprod_i(\sigma^{(k)}_i, \sigma^{(k-1)}_i) \rightarrow (X^k, X^{k-1})$. It is evident that this map induces a homeomorphism $\Phi\star: \coprod_i \sigma^{(k)}_i/\coprod_i \sigma^{(k-1)}_i \rightarrow X^k/X^{k-1}$. As a result, we have $H_d(\coprod_i (\sigma^{(k)}_i, \sigma^{(k-1)}_i)) \cong H_d(X^k, X^{k-1})$.
 
 Utilizing the Excision Theorem \ref{excisiontheorem}, which allows us to replace a subspace with its complement while preserving homology, we can conclude that there exists an isomorphism $H_d(X,A) \rightarrow H_d(X/A)$ for all good pairs $(X,A)$. Consequently, we have $H_d(\coprod_i (\sigma^{(k)}_i, \sigma^{(k-1)}_i)) \cong H_d(X^k, X^{k-1}) \cong H_d(X^k/X^{k-1})$. Through transitivity, this establishes $H_d(\coprod_i (\sigma^{(k)}_i, \sigma^{(k-1)}_i)) \cong H_d(X^k/X^{k-1})$. This result shows that $H_d(X^k, X^{k-1})$ is trivial for $d \neq k$ and is a free abelian group with the basis being the relative cycles defined by the maps $\sigma^{(k)} \rightarrow X$.
 
