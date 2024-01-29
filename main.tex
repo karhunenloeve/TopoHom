@@ -60,7 +60,7 @@ Given a set $X = \{x_0, x_1, \ldots, x_d\} \subset \mathbb{R}^n$ consisting of $
 
 As a convention, the empty set $\emptyset$ is included as a face, representing the simplex formed by the empty subset of vertices. A $0$-simplex represents a single point, a $1$-simplex represents a line segment connecting two points, a $2$-simplex represents a triangle, and a $3$-simplex represents a tetrahedron. It is worth mentioning that the $d$-simplex is homeomorphic to the $d$-dimensional disk $D^d$.
 
-Furthermore, it is worth noting that $\sigma^{(d)}$ represents the convex hull of the points $X$, which can be defined as the smallest convex subset of $\mathbb{R}^n$ that contains all the points $x_0, x_1, \ldots, x_d$. The \emph{faces} of the simplex $\sigma^{(d)}$ with vertex set $X$ are simplices formed by subsets of $X$. An \emph{$d$-face} of a simplex refers to a subset of the vertices of the simplex with a cardinality of $d+1$. The faces of an $d$-simplex with a dimension less than $d$ are known as its \emph{proper faces}. Two simplices are considered to be \emph{properly situated} if their intersection is either empty or a face of both simplices. By identifying simplices along entire faces, we can construct the resulting \emph{simplicial complexes}.
+Furthermore, it is worth noting that $\sigma^{(d)}$ represents the convex hull of the points $X$, which can be defined as the smallest convex subset of $\mathbb{R}^n$ that contains all the points $x_0, x_1, \ldots, x_d$. The \emph{faces} of the simplex $\sigma^{(d)}$ with vertex set $X$ are simplices formed by subsets of $X$. An \emph{$d$-face} of a simplex refers to a subset of the vertices of the simplex with a cardinality of $d+1$. The faces of a $d$-simplex with a dimension less than $d$ are known as its \emph{proper faces}. Two simplices are considered to be \emph{properly situated} if their intersection is either empty or a face of both simplices. By identifying simplices along entire faces, we can construct the resulting \emph{simplicial complexes}.
 
 \begin{definition}
 A \textbf{simplicial complex} $K$ is a finite collection of simplices that satisfies the following properties:
@@ -113,20 +113,20 @@ The identity element of the group is represented by the empty chain $\sum_{i \in
 \end{proof}
 
 \begin{definition}
-Let $\sigma^{(d)}$ be an oriented $d$-simplex in a complex $K$. The $\textbf{boundary}$ of $\sigma^{(d)}$ is defined as the simplicial $(d-1)$-chain of $K$ with coefficients in the abelian group $g_i \in G = \mathbb{Z}$, given by
+Let $\sigma^{(d)}$ be an oriented $d$-simplex in a complex $K$. The $\textbf{boundary}$ of $\sigma^{(d)}$ is defined as the simplicial $(d-1)$-chain of $K$ with coefficients in the abelian group $g_i \in G$, given by
 \begin{equation}
 \partial(\sigma^{(d)}) = g_0 \sigma^{(d-1)}_0 + g_1 \sigma^{(d-1)}_1 + \ldots + g_d \sigma^{(d-1)}_d = \sum_{i=1}^{d} g_i \sigma^{(d-1)}_i
 \end{equation}
 where $\sigma^{(d-1)}_i$ is an $(d-1)$-face of $\sigma^{(d)}$. If $d=0$, we define $\partial(\sigma^{(0)}) = e_G = 0$.
 \end{definition}
 
-Since $\sigma^{(d)}$ is an oriented simplex, the $\sigma^{(d-1)}_i$-faces also have associated orientations. We can extend the definition of the boundary linearly to elements of $C^\Delta_d$.
+In the following, we will set $G = \mathbb{Z}$. Since $\sigma^{(d)}$ is an oriented simplex, the $\sigma^{(d-1)}_i$-faces also have associated orientations. We can extend the definition of the boundary linearly to elements of $C^\Delta_d$.
 
 \begin{lemma}
 The \textbf{boundary operator} is a group homomorphism $\partial: C^\Delta_d \rightarrow C^\Delta_{d-1}$.
 \end{lemma}
 \begin{proof}
-We define the boundary operator for a $d$-chain $c = \sum_{i=1}^{k} g_i \sigma_i^{(d)}$ as follows: $\partial(c) = \sum_{i=1}^{k} g_i \partial(\sigma_i^{(d)}) = \sum_{i=1}^{k} g_i \sum_{j=1}^{d} \sigma_j^{(d-1)} = \sum_{i=1}^{k} \sum_{j=1}^{d} g_i \sigma_j^{(d-1)} \in C^\Delta_{d-1}$, where $\sigma_i^{(d)}$ are the $d$-simplices of $K$. We can compute this by
+We define the boundary operator for a $d$-chain $c = \sum_{i=1}^{k} g_i \sigma_i^{(d)}$ as follows: $\partial(c) = \sum_{i=1}^{k} g_i$ $\partial(\sigma_i^{(d)})$ $=$ $\sum_{i=1}^{k} g_i \sum_{j=1}^{d} \sigma_j^{(d-1)}$ $=$ $\sum_{i=1}^{k} \sum_{j=1}^{d} g_i \sigma_j^{(d-1)}$ which is an element of $C^\Delta_{d-1}$, where $\sigma_i^{(d)}$ are the $d$-simplices of $K$. We can compute this by
 \begin{align}
 \partial(c + c') &= \partial(\sum_{i=1}^{k} g_i \sigma_i^{(d)} + \sum_{j=1}^{l} g'_j \sigma_j^{(d)}) \\
 &= \sum_{i=1}^{k} g_i \partial(\sigma_i^{(d)}) + \sum_{j=1}^{l} g'_j \partial(\sigma_j^{(d)}) \\
@@ -153,10 +153,10 @@ A $d$-chain is referred to as a \textbf{cycle} if its boundary is equal to zero.
 A $d$-cycle of a $k$-complex $K$ is said to be \textbf{homologous to zero} if it can be expressed as the boundary of an $(d+1)$-chain in $K$, where $d=0,1,\ldots,k-1$. In other words, a cycle is considered a boundary if it can be \glqq filled in\grqq{} by a higher-dimensional chain. This equivalence relation is denoted as $c \sim 0$, and the subgroup of $Z^\Delta_d$ consisting of boundaries is referred to as the simplicial \textbf{boundary group $B^\Delta_d$}. It is worth noting that $B^\Delta_d$ is equal to the image of the boundary operator $\partial_{d+1}$.
 \end{definition}
 
-Since $B^\Delta_d$ is a subgroup of $Z^\Delta_d$ and $Z^\Delta_d$ is an abelian group, every subgroup of $Z^\Delta_d$ is normal. Therefore, we can construct the quotient group $H^\Delta_d = Z^\Delta_d / B^\Delta_d$.
+Since $B^\Delta_d$ is a subgroup of $Z^\Delta_d$ and $Z^\Delta_d$ is an abelian group, every subgroup of $Z^\Delta_d$ is normal. Therefore, we can construct the group quotient $H^\Delta_d = Z^\Delta_d / B^\Delta_d$.
 
 \begin{definition}
-The group $H^\Delta_d$ represents the $d$-dimensional simplicial \textbf{homology group} of the complex $K$ over $\mathbb{Z}$. It can be expressed as the quotient group $\ker(\partial_d) / \text{im}(\partial_{d+1})$.
+The group $H^\Delta_d$ represents the $d$-dimensional simplicial \textbf{homology group} of the complex $K$ over $\mathbb{Z}$. It can be expressed as the group quotient $\ker(\partial_d) / \text{im}(\partial_{d+1})$.
 \end{definition}
 
 Next, we want to examine the structure of this homology group by shedding light on its connection to the connected components of a simplicial complex. We will find that the homology groups of the connected components of the complex, which in turn form a complex themselves, yield the direct sum of the homology group of the entire complex.
@@ -265,14 +265,14 @@ The zero-dimensional simplicial homology group of a complex $K$ over $\mathbb{Z}
 	\label{chain}
 	c = \sum_{i=0}^{d+1}g_i (v_0,\ldots,v_{i-1},v_{i+1},\ldots,v_d),
 	\end{equation}
-	where $g_i \in \mathbb{Z}$. Since $\sigma^{(d+1)}$ itself is not part of the structure, there are no boundaries in $Z^\Delta_d$, the group of simplicial cycles. Therefore, $H^\Delta_d = Z\Delta_d/B^\Delta_d$ represents the group of simplicial cycles. If $c \in Z^\Delta_d$, then $\partial_{d+1}(c) = 0$. By using Eq. \ref{chain}, we have:
+	where $g_i \in \mathbb{Z}$. Since $\sigma^{(d+1)}$ itself is not part of the structure, there are no boundaries in $Z^\Delta_d$, the group of simplicial cycles. Therefore, $H^\Delta_d = Z^\Delta_d/B^\Delta_d$ represents the group of simplicial cycles. If $c \in Z^\Delta_d$, then $\partial_{d+1}(c) = 0$. By using Eq. \ref{chain}, we have:
 	\begin{align} \partial_{d+1}(c) = &\partial_{d+1}\left(\sum_{i=0}^{d+1} g_i(v_0,\ldots,v_{i-1},v_{i+1},\ldots,v_d) \right) \\ = &\sum_{i=0}^{d+1}g_i \big(\sum_{j1}^{d+1}(-1)^j(v_0,\ldots,v_{i-1},v_{i+1},\ldots,v_{j-1},v_{j+1},\ldots,v_d)\big). \end{align}
 	By rearranging this sum, we obtain terms of the form:
 	\begin{equation} \label{terms} (g_k-g_l)(v_0,\ldots,v_{j-1},v_{j+1},\ldots,v_{i-1},v_{i+1},\ldots,v_d) \end{equation}
-	where $k,l = 0, \ldots, d+1$ for all $i,j = 0, \ldots, d$. Each pair of $d$-simplices of $\sigma^{(d+1)}$ intersect along an $(d-1)$-face. Therefore, we obtain terms of the form given in Eq. \ref{terms} for each of these faces. From this, we can deduce that if $\partial_{d}(c) = 0$, we must have $g_k = g_l$ for all $k,l = 0, \ldots, d+1$. In other words, $g_0 = g_1 = \cdots = g_{d+1}$. Consequently, our original $d$-chain can be rewritten as:
+	where $k,l = 0, \ldots, d+1$ for all $i,j = 0, \ldots, d$. Each pair of $d$-simplices of $\sigma^{(d+1)}$ intersect along a $(d-1)$-face. Therefore, we obtain terms of the form given in Eq. \ref{terms} for each of these faces. From this, we can deduce that if $\partial_{d}(c) = 0$, we must have $g_k = g_l$ for all $k,l = 0, \ldots, d+1$. In other words, $g_0 = g_1 = \cdots = g_{d+1}$. Consequently, our original $d$-chain can be rewritten as:
 	\begin{equation} c = \sum_{i=0}^{n+1}g_0(v_0,\ldots,v_{i-1},v_{i+1},\ldots,v_d), \end{equation}
 	allowing us to choose $g_0$ from $\mathbb{Z}$. Thus, we conclude that $H^\Delta_d(S^d) \cong \mathbb{Z}$.
-	\item We demonstrate that $H^\Delta_d(D^d) = 0$. To do so, we employ the simplest simplicial structure for $D^d$, which is that of the $d$-simplex $\sigma^{(d)}$. Consequently, all $d$-chains can be expressed as $c = g \sigma^{(d)}$, where $g \in \mathbb{Z}$. It is important to note that this form is never a boundary, thus implying that $H^\Delta_d = Z^\Delta_d$. However, $\partial_d(c) = 0$ only when $g = 0$. Consequently, we can conclude that $H^\Delta_d(D^d) \cong 0$.
+	\item We demonstrate that $H^\Delta_d(D^d) = 0$. To do so, we employ the simplest simplicial structure for $D^d$, which is that of the $d$-simplex $\sigma^{(d)}$. Consequently, all $d$-chains can be expressed as $c = g \sigma^{(d)}$, where $g \in \mathbb{Z}$. It is important to note that this form is never a boundary, thus implying that $H^\Delta_d = Z^\Delta_d$. However, $\partial_d(c) = 0$ is in general only true when $g = 0$. Consequently, we can conclude that $H^\Delta_d(D^d) \cong 0$.
 \end{itemize}
 \end{example}
 
@@ -280,7 +280,7 @@ The zero-dimensional simplicial homology group of a complex $K$ over $\mathbb{Z}
 In the realm of lower dimensions, we possess an intuitive understanding of when two topological spaces are fundamentally \glqq equivalent\grqq{}. To formalize and solidify this intuition, we have devised various methods, one of which is the concept of homeomorphism. It would be highly desirable to establish a relationship between the homology groups of homeomorphic spaces. Remarkably, it has been discovered that if two topological spaces are homeomorphic, their homology groups are isomorphic. This fact begs for verification.
 
 To accomplish this task, we require a means of comparing homology groups. However, it is not immediately evident how we can achieve this using the tools we have developed thus far. In fact, it proves to be quite a challenging problem. To circumvent this difficulty, we introduce the notion of \emph{singular homology}. The fundamental principles underlying this concept are analogous to those we have already explored.
-To compute $Z_d(X)$, we need to find the group of $d$-cycles in $X$. Since $X$ is obtained by identifying opposite faces of $\partial_d \sigma^{(d)}$, an $d$-cycle in $X$ corresponds to an $d$-cycle in $\partial_d \sigma^{(d)}$ that is not a boundary of any $(d+1)$-dimensional simplex in $\sigma^{(d)}$. In other words, an $d$-cycle in $X$ corresponds to an $d$-cycle in $\partial_d \sigma^{(d)}$ that is not a boundary of any $(d+1)$-dimensional face of $\sigma^{(d)}$.
+To compute $Z_d(X)$, we need to find the group of $d$-cycles in $X$. Since $X$ is obtained by identifying opposite faces of $\partial_d \sigma^{(d)}$, a $d$-cycle in $X$ corresponds to a $d$-cycle in $\partial_d \sigma^{(d)}$ that is not a boundary of any $(d+1)$-dimensional simplex in $\sigma^{(d)}$. In other words, a $d$-cycle in $X$ corresponds to a $d$-cycle in $\partial_d \sigma^{(d)}$ that is not a boundary of any $(d+1)$-dimensional face of $\sigma^{(d)}$.
 \begin{definition}
 In the context of a topological space $X$, we define a \textbf{singular $d$-simplex} as a map $\tilde{\sigma}^{(d)}: \sigma^{(d)} \rightarrow X$, where $\tilde{\sigma}^{(d)}$ is continuous.
 \end{definition}
@@ -295,7 +295,7 @@ The boundary map, denoted as $\partial_d$, is a function that operates on the ch
 Here, $v_i$ is a map that takes the $0$-simplex $\sigma^{(0)}$ to the corresponding vertex in $X$, s.t. $v_i: \sigma^{(0)} \rightarrow X$ is continuous.
 \end{definition}
 
-As mentioned earlier, when we apply the boundary map twice to an $d$-chain $c$, denoted as $\partial^2(c)$ or $\partial_{d-1}(\partial_d(c))$, the result is always zero. This observation leads us to the idea of defining the singular homology groups in a similar way to the simplicial homology groups.
+As mentioned earlier, when we apply the boundary map twice to a $d$-chain $c$, denoted as $\partial^2(c)$ or $\partial_{d-1}(\partial_d(c))$, the result is always zero. This observation leads us to the idea of defining the singular homology groups in a similar way to the simplicial homology groups.
 
 \begin{definition}
 The \textbf{singular homology group} $H_d(X)$ is defined to be the quotient $H_d(X) = \ker(\partial_d) / \text{im}(\partial_{d+1})$.
